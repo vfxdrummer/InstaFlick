@@ -11,15 +11,10 @@ import UIKit
 
 class InstaImageCell: UICollectionViewCell {
   
-  @IBOutlet weak var username: UILabel!
   @IBOutlet weak var postImage: UIImageView!
   @IBOutlet weak var postTitle: UILabel!
-  @IBOutlet weak var subName: UILabel!
-  @IBOutlet weak var postDate: UILabel!
-  @IBOutlet weak var postContent: UILabel!
   
-  @IBOutlet weak var upvoteCount: UILabel!
-  @IBOutlet weak var downvoteCount: UILabel!
+  @IBOutlet weak var likes: UILabel!
   @IBOutlet weak var commentCount: UILabel!
   
   

@@ -121,8 +121,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Insta" id="cqX-rT-dKU" userLabel="Insta"/>
                     <navigationItem key="navigationItem" title="Master" id="xY5-fm-0h9"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="uiB-OA-AoW">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="5kx-wg-QX6">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>

@@ -32,11 +32,16 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     // Setup the Delegates
     collectionInsta.delegate = self
     collectionInsta.dataSource = self
+//    if #available(iOS 10.0, *) {
+//      collectionInsta.refreshControl = self.refreshControl!
+//    } else {
+//      collectionInsta.addSubview(self.refreshControl!)
+//    }
     
     // Setup the Title
     self.restorationIdentifier = "InstaPost"
     
-//    self.refreshControl!.addTarget(self, action: #selector(InstaPostView.refresh(_:)), for: UIControlEvents.ValueChanged)
+    self.refreshControl!.addTarget(self, action: #selector(InstaPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
     
     instaViewModel?.loadInstaPosts()
   }
@@ -46,17 +51,24 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     self.tabBarController?.title = "Insta Post"
   }
   
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
   func refresh(refreshControl: UIRefreshControl) {
     instaViewModel?.loadInstaPosts()
+    
+//    if #available(iOS 10.0, *) {
+//      if collectionInsta.refreshControl!.isRefreshing
+//      {
+//        collectionInsta.refreshControl?.endRefreshing()
+//      }
+//    }
     
     if self.refreshControl!.isRefreshing
     {
       self.refreshControl!.endRefreshing()
     }
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
   }
   
   /**
@@ -103,11 +115,8 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   func collectionView(collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                              sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    var height : CGFloat = 200
+    var height : CGFloat = UIScreen.main.bounds.width
     let width : CGFloat = UIScreen.main.bounds.width
-    if (indexPath.row == 0) {
-      height = 175
-    }
     return CGSize(width:width, height:height)
   }
   
