@@ -113,8 +113,9 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
-    var height : CGFloat = UIScreen.main.bounds.width
+    let InstaPostObj = instaViewModel!.posts[indexPath.row]
+    let ratio = InstaPostObj.image_standard_resolution?.ratio
+    let height : CGFloat = ratio! * UIScreen.main.bounds.width
     let width : CGFloat = UIScreen.main.bounds.width
     return CGSize(width:width, height:height)
   }

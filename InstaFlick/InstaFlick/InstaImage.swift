@@ -14,6 +14,9 @@ class InstaImage : NSObject  {
   dynamic var url  : String = ""
   var width        : Int = 0
   var height       : Int = 0
+  var ratio : CGFloat {
+    return CGFloat(self.height) / CGFloat(self.width)
+  }
   
   
   class func initWithJSON(json: [String:Any]) -> InstaImage {
