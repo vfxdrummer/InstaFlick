@@ -58,6 +58,23 @@ class InstaInterface: NSObject {
       return post
     }
     
+    if let id = json["id"] as? String {
+      post.id = id
+    }
+    
+    if let caption = json["caption"] as? [String:Any] {
+      post.title = caption["text"]! as! String
+    }
+    
+    if let likes = json["likes"] as? [String:Any] {
+      post.likes = likes["count"] as! Int
+    }
+    
+    if let comments = json["comments"] as? [String:Any] {
+      post.comments = comments["count"] as! Int
+    }
+    
+    
     if let images = json["images"] as? [String:Any] {
       if images["standard_resolution"] != nil {
         post.image_standard_resolution = InstaImage.initWithJSON(json: images["standard_resolution"] as! [String : Any])

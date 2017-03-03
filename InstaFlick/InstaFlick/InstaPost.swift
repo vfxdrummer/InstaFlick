@@ -16,15 +16,19 @@ public enum InstaPostType : String {
 
 class InstaPost : NSObject  {
   
-  dynamic var insta_post_type = InstaPostType.Image.rawValue
-  var insta_post_type_enum : InstaPostType {
+  dynamic var insta_post_type                = InstaPostType.Image.rawValue
+  var insta_post_type_enum                   : InstaPostType {
     get {
       let resourceType = InstaPostType(rawValue: insta_post_type)
       return (resourceType != nil) ? resourceType! : InstaPostType.Image
     }
     set {
-      insta_post_type = newValue.rawValue
+      insta_post_type                        = newValue.rawValue
     }
   }
+  dynamic var id                             : String = ""
+  dynamic var title                          : String = ""
+  dynamic var likes                          : Int = 0
+  dynamic var comments                       : Int = 0
   dynamic var image_standard_resolution      : InstaImage? = nil
 }
