@@ -82,7 +82,9 @@ class InstaInterface: NSObject {
     }
     
     if let videos = json["videos"] as? [String:Any] {
-      
+      if videos["standard_resolution"] != nil {
+        post.video_standard_resolution = InstaVideo.initWithJSON(json: videos["standard_resolution"] as! [String : Any])
+      }
     }
     
     return post

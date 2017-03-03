@@ -31,4 +31,5 @@ class InstaPost : NSObject  {
   dynamic var likes                          : Int = 0
   dynamic var comments                       : Int = 0
   dynamic var image_standard_resolution      : InstaImage? = nil
+  dynamic var video_standard_resolution      : InstaVideo? = nil
 }
