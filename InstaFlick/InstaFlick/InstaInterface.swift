@@ -16,98 +16,57 @@ class InstaInterface: NSObject {
    Fetches Insta
    */
   class func getInstaPosts() {
-//    APIService.sharedInstance.getInstaPosts({ response in
-//      CurrentInstaItems.sharedInstance.InstaPosts = parseList(response["posts"]).filter({$0.level == "0"})
-//    })
+    APIService.getInstaPosts(handler: { response in
+      if (response["data"] != nil) {
+        CurrentInstaItems.sharedInstance.instaPosts = parseList(list: response["data"] as! [Any])
+      }
+    })
   }
   
+  
 //  /**
-//   structureInstaPostHierarchy
-//   organizes flat list of Insta posts into comment tree
+//   parse
+//   Takes a JSON object and pulls out the necessary values.\
 //   */
-//  class func structureInstaPostHierarchy(posts:[InstaPost]) -> [InstaPost] {
-//    var postMap:[String:InstaPost] = [:]
-//    var structuredPosts:[InstaPost] = []
-//    var replies:[InstaPost] = []
+//  class func parseImage(json:[String: Any]) -> InstaPostImage {
+//    let post : InstaPostImage = InstaPostImage()
 //    
-//    for post in posts {
-//      // append root post nodes
-//      postMap[post.id] = post
-//      if (post.parent_id == "") {
-//        structuredPosts.append(post)
-//      } else if (post.parent_id != "") {
-//        replies.append(post)
-//      }
-//    }
-//    
-//    // connect replies to parents
-//    for childPost in replies {
-//      if let parentPost = postMap[childPost.parent_id] {
-//        parentPost.childPosts.append(childPost)
-//      }
-//    }
-//    return structuredPosts
+//    return post
 //  }
+//  
+//  class func parseVideo(json:[String: Any]) -> InstaPostImage {
+//    let post : InstaPostVideo = InstaPostVideo()
+//    
+//    return post
+//  }
+//  
   
   
   /**
    parse
    Takes a JSON object and pulls out the necessary values.\
    */
-  class func parse(json:JSON) -> InstaPost {
+  class func parse(json:[String: Any]) -> InstaPost {
     let post : InstaPost = InstaPost()
-//    post.id = json["id"].stringValue
-//    post.share_resource_id = json["share_resource_id"].stringValue
-//    post.parent_id = json["parent_id"].stringValue
-//    post.downvotes = (json["downvotes"].stringValue != "") ? json["downvotes"].stringValue : "0"
-//    post.created_at = json["created_at"].stringValue.toDate()
-//    post.image_url = json["image_url"].stringValue
-//    post.user_id = json["user_id"].stringValue
-//    post.upvotes = (json["upvotes"].stringValue != "") ? json["upvotes"].stringValue : "0"
-//    post.share_resource_type = json["share_resource_type"].stringValue
-//    post.original_parent_id = json["original_parent_id"].stringValue
-//    post.updated_at = json["updated_at"].stringValue
-//    post.replies_count = (json["replies_count"].stringValue != "") ? json["replies_count"].stringValue : "0"
-//    post.content = json["content"].stringValue
-//    
-//    // set title
-//    switch post.share_resource_type {
-//    case "playlist":
-//      let share_resource = json["share_resource"]
-//      post.title = share_resource["name"].stringValue
-//    case "track":
-//      let share_resource = json["share_resource"]
-//      post.title = share_resource["title"].stringValue
-//      post.subName = share_resource["artist"].stringValue
-//    case "text":
-//      post.title = InstaPost.titleFromContent(post.content)
-//    default:
-//      post.title = ""
-//    }
-//    
-//    if json["user"] != nil {
-//      let user = json["user"]
-//      if user["info"] != nil {
-//        let info = user["info"]
-//        var name = ""
-//        if info["first_name"] != nil {
-//          name = "\(info["first_name"]) "
-//        }
-//        if info["last_name"] != nil {
-//          name = "\(name)\(info["last_name"])"
-//        }
-//        post.username = name
-//      }
-//    }
-//    
-//    print(json)
-//    
-//    // fix blank resource types
-//    post.share_resource_type = (post.share_resource_type != "") ? post.share_resource_type : InstaShareResourceType.Text.rawValue.strippedQuotes
-//    
-//    if (post.parent_id != "" || post.original_parent_id != "") {
-//      post.share_resource_type = InstaShareResourceType.Reply.rawValue.strippedQuotes
-//    }
+    
+    switch(json["type"] as! String) {
+    case "video":
+      post.insta_post_type = "video"
+    case "image":
+      post.insta_post_type = "image"
+    default:
+      return post
+    }
+    
+    if let images = json["images"] as? [String:Any] {
+      if images["standard_resolution"] != nil {
+        post.image_standard_resolution = InstaImage.initWithJSON(json: images["standard_resolution"] as! [String : Any])
+      }
+    }
+    
+    if let videos = json["videos"] as? [String:Any] {
+      
+    }
     
     return post
   }
@@ -119,12 +78,13 @@ class InstaInterface: NSObject {
    - parameter usePNG: Bool
    - returns: [Channel]
    */
-  class func parseList(json:JSON) -> [InstaPost] {
-//    if let list = json.array {
-//      return assignPostLevel(list.map({
-//        parse($0)
-//      }))
-//    }
-    return []
+  class func parseList(list:Array<Any>) -> [InstaPost] {
+    return list.map( {
+      if let json = $0 as? [String: Any] {
+        return parse(json: json)
+      } else {
+        return InstaPost()
+      }
+    }).filter( { $0.image_standard_resolution != nil } )
   }
 }

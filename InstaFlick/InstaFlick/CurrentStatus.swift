@@ -20,10 +20,10 @@ class CurrentInstaItems : NSObject {
       delegates.append(delegate!)
     }
   }
-  var InstaPosts : [InstaPost] = [] {
+  var instaPosts : [InstaPost] = [] {
     didSet {
       _ = delegates.flatMap({
-        $0.update(posts: InstaPosts)
+        $0.update(posts: instaPosts)
       })
     }
   }

@@ -9,42 +9,22 @@
 
 import UIKit
 
-public enum CommunityShareResourceType : String {
-  case Album    = "album"
-  case Playlist = "playlist"
-  case Reply    = "reply"
-  case Text     = "text"
-  case Track    = "track"
+public enum InstaPostType : String {
+  case Image    = "image"
+  case Video    = "video"
 }
 
 class InstaPost : NSObject  {
   
-  dynamic var id                  : String = ""
-  dynamic var share_resource_id   : String = ""
-  dynamic var parent_id           : String = ""
-  dynamic var downvotes           : String = ""
-  dynamic var created_at          : NSDate = NSDate()
-  dynamic var image_url           : String = ""
-  dynamic var user_id             : String = ""
-  dynamic var username            : String = ""
-  dynamic var upvotes             : String = ""
-  dynamic var share_resource_type = CommunityShareResourceType.Text.rawValue
-  var share_resource_type_enum : CommunityShareResourceType {
+  dynamic var insta_post_type = InstaPostType.Image.rawValue
+  var insta_post_type_enum : InstaPostType {
     get {
-      let resourceType = CommunityShareResourceType(rawValue: share_resource_type)
-      return (resourceType != nil) ? resourceType! : CommunityShareResourceType.Text
+      let resourceType = InstaPostType(rawValue: insta_post_type)
+      return (resourceType != nil) ? resourceType! : InstaPostType.Image
     }
     set {
-      share_resource_type = newValue.rawValue
+      insta_post_type = newValue.rawValue
     }
-    
   }
-  dynamic var original_parent_id  : String = ""
-  dynamic var updated_at          : String = ""
-  dynamic var replies_count       : String = ""
-  dynamic var content             : String = ""
-  dynamic var title               : String = ""
-  dynamic var subName             : String = ""
-  dynamic var level               : String = ""
-
+  dynamic var image_standard_resolution      : InstaImage? = nil
 }

@@ -16,7 +16,7 @@ class InstaViewModel: IFViewModel, CurrentInstaProtocol {
   
   var posts : [InstaPost] {
     get {
-      return CurrentInstaItems.sharedInstance.InstaPosts
+      return CurrentInstaItems.sharedInstance.instaPosts
     }
   }
   
