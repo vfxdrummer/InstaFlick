@@ -68,7 +68,7 @@ extension UIImageView {
    */
   func fadeIn(_ url:String, useEmptyAlbum:Bool=false, handler: ((UIImage)->())? = nil) {
     
-    if !url.contains("http://") {
+    if !(url.contains("http://") || url.contains("https://")) {
       // Load Local Image
       let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
       let path = documentsPath + url

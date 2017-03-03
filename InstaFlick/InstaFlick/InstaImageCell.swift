@@ -34,14 +34,9 @@ class InstaImageCell: UICollectionViewCell {
    Loads a Insta post object and sets the content
    - parameter InstaPost: InstaPost
    */
-  func load(InstaPost:InstaPost) {
-//    username.text = InstaPost.username
-//    postTitle.text = InstaPost.title
-//    postImage.fadeIn(InstaPost.image_url)
-//    subName.text = InstaPost.subName
-//    postContent.text = InstaPost.content
-//    upvoteCount.text = InstaPost.upvotes
-//    downvoteCount.text = InstaPost.downvotes
-//    commentCount.text = InstaPost.replies_count
+  func load(instaPost:InstaPost) {
+    if let image = (instaPost.image_standard_resolution?.url)! as? String {
+      postImage.fadeIn(image)
+    }
   }
 }

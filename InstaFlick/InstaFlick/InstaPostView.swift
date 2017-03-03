@@ -73,13 +73,15 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     return 1
   }
   
-  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView,
+                          heightForHeaderInSection section: Int) -> CGFloat {
     return CGFloat(0.5)
   }
   
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UIScreen.main.bounds.height
   }
+
   
   //  MARK: UICollectionViewDelegate & UICollectionViewDataSource Methods
   
@@ -90,7 +92,7 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let InstaPostObj = instaViewModel!.posts[indexPath.row]
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstaImageCell", for: indexPath as IndexPath) as! InstaImageCell
-    cell.load(InstaPost: InstaPostObj)
+    cell.load(instaPost: InstaPostObj)
     return cell
   }
   
@@ -101,7 +103,7 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   func collectionView(collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                              sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    var height : CGFloat = 100
+    var height : CGFloat = 200
     let width : CGFloat = UIScreen.main.bounds.width
     if (indexPath.row == 0) {
       height = 175
