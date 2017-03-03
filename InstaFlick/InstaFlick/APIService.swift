@@ -17,7 +17,7 @@ import SwiftyJSON
 class APIService: NSObject {
   
   class func getInstaPosts(handler: @escaping (_ json: [String: Any]) -> ()) {
-    let urlInsta = "https://api.instagram.com/v1/users/self/media/recent/?access_token=1278143711.9f65e75.fdf706f15abb4635b91592a87dde1c7f"
+    let urlInsta = Constants.instaPostsURL.rawValue
     AFAdapter.GET(urlString:urlInsta, handler: handler)
   }
   

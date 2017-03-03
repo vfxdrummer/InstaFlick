@@ -13,9 +13,8 @@ enum StoryboardName : String {
   case Onboarding = "Onboarding"
 }
 
-class Constants: NSObject {
+public enum Constants: String {
   
-  // titles
-  let instaTitle : String = "Insta Posts"
-  
+  case instaTitle = "Insta"
+  case instaPostsURL = "https://api.instagram.com/v1/users/self/media/recent/?access_token=1278143711.9f65e75.fdf706f15abb4635b91592a87dde1c7f"
 }
