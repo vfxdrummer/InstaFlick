@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
@@ -97,14 +99,24 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   
   //  MARK: UICollectionViewDelegate & UICollectionViewDataSource Methods
   
-  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath) {
-    // push to page for post
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let InstaPostObj = instaViewModel!.posts[indexPath.row]
+    guard InstaPostObj.insta_post_type == "video" else { return }
+    
+    let videoURL = NSURL(string: (InstaPostObj.video_standard_resolution?.url)!)
+    let player = AVPlayer(url: videoURL! as URL)
+    let playerViewController = AVPlayerViewController()
+    playerViewController.player = player
+    self.present(playerViewController, animated: true) {
+      playerViewController.player!.play()
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let InstaPostObj = instaViewModel!.posts[indexPath.row]
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstaImageCell", for: indexPath as IndexPath) as! InstaImageCell
     cell.load(instaPost: InstaPostObj)
+    
     return cell
   }
   
