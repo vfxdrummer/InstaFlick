@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
   private var instaViewModel : InstaViewModel? = nil
   
@@ -112,9 +112,8 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     return instaViewModel!.posts.count
   }
   
-  func collectionView(collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                             sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
     var height : CGFloat = UIScreen.main.bounds.width
     let width : CGFloat = UIScreen.main.bounds.width
     return CGSize(width:width, height:height)
