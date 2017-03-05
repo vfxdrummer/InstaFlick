@@ -29,4 +29,25 @@ class CurrentInstaItems : NSObject {
   }
 }
 
+//  MARK: CurrentFlickItems
+protocol CurrentFlickProtocol {
+  func update(posts:[FlickPost])
+}
+class CurrentFlickItems : NSObject {
+  static let sharedInstance = CurrentFlickItems()
+  private var delegates : [CurrentFlickProtocol] = []
+  var delegate : CurrentFlickProtocol? = nil {
+    didSet {
+      delegates.append(delegate!)
+    }
+  }
+  var flickPosts : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: flickPosts)
+      })
+    }
+  }
+}
+
 

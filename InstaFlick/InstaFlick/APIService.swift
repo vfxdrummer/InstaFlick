@@ -16,6 +16,11 @@ import SwiftyJSON
 
 class APIService: NSObject {
   
+  class func getFlickPosts(handler: @escaping (_ json: [String: Any]) -> ()) {
+    let urlFlick = Constants.flickPostsURL.rawValue
+    AFAdapter.GET(urlString:urlFlick, handler: handler)
+  }
+  
   class func getInstaPosts(handler: @escaping (_ json: [String: Any]) -> ()) {
     let urlInsta = Constants.instaPostsURL.rawValue
     AFAdapter.GET(urlString:urlInsta, handler: handler)
