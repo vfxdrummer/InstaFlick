@@ -14,6 +14,8 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   
   private var instaViewModel : InstaViewModel? = nil
   private var instaRefreshControl : UIRefreshControl? = nil
+  private var avPlayerVC : AVPlayerViewController? = nil
+  private var player : AVPlayer? = nil
   
   @IBOutlet weak var collectionInsta: UICollectionView!
   
@@ -106,12 +108,14 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     let InstaPostObj = instaViewModel!.posts[indexPath.row]
     guard InstaPostObj.insta_post_type == "video" else { return }
     
+    // for now instatiate an AVPlayerViewController here
+    // TODO - move this to th cell
     let videoURL = NSURL(string: (InstaPostObj.video_standard_resolution?.url)!)
-    let player = AVPlayer(url: videoURL! as URL)
-    let playerViewController = AVPlayerViewController()
-    playerViewController.player = player
-    self.present(playerViewController, animated: true) {
-      playerViewController.player!.play()
+    self.player = AVPlayer(url: videoURL! as URL)
+    self.avPlayerVC = AVPlayerViewController()
+    self.avPlayerVC!.player = self.player
+    self.present(self.avPlayerVC!, animated: true) {
+      self.avPlayerVC!.player!.play()
     }
   }
   
