@@ -14,12 +14,10 @@ class InstaImageCell: UICollectionViewCell {
   @IBOutlet weak var postImage: UIImageView!
   @IBOutlet weak var postTitle: UILabel!
   @IBOutlet weak var postTitle2: UILabel!
+  @IBOutlet weak var playImage: UIImageView!
   
   @IBOutlet weak var likes: UILabel!
   @IBOutlet weak var commentCount: UILabel!
-  
-  
-  
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -38,5 +36,7 @@ class InstaImageCell: UICollectionViewCell {
     if let image = (instaPost.image_standard_resolution?.url)! as? String {
       postImage.fadeIn(image)
     }
+    playImage.isHidden = (instaPost.insta_post_type == "video") ? false : true
+    
   }
 }

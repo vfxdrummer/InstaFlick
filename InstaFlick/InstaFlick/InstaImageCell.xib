@@ -42,6 +42,13 @@
                                 <color key="textColor" red="0.28110318747684337" green="0.96024935233160624" blue="0.85471465901837573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player_button_play_active.png" translatesAutoresizingMaskIntoConstraints="NO" id="pHS-Ef-YHH">
+                                <rect key="frame" x="112.5" y="117.5" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="SF4-FB-POx"/>
+                                    <constraint firstAttribute="height" constant="75" id="XRZ-8I-bub"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.23921568630000001" green="0.22352941179999999" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -53,6 +60,8 @@
                             <constraint firstAttribute="bottom" secondItem="BJW-0g-S5s" secondAttribute="bottom" constant="29" id="gh7-fv-5Z2"/>
                             <constraint firstItem="uoy-g8-lob" firstAttribute="leading" secondItem="pcj-ht-FMn" secondAttribute="leading" id="hD2-fg-7mu"/>
                             <constraint firstItem="BJW-0g-S5s" firstAttribute="centerX" secondItem="pcj-ht-FMn" secondAttribute="centerX" constant="-1" id="ra7-SI-ugu"/>
+                            <constraint firstItem="pHS-Ef-YHH" firstAttribute="centerY" secondItem="pcj-ht-FMn" secondAttribute="centerY" constant="-10" id="wJN-dg-FX7"/>
+                            <constraint firstItem="pHS-Ef-YHH" firstAttribute="centerX" secondItem="pcj-ht-FMn" secondAttribute="centerX" id="yIw-wn-L1D"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tig-yw-zDd" userLabel="StatsView">
@@ -125,6 +134,7 @@
             <connections>
                 <outlet property="commentCount" destination="Prp-8I-0Mb" id="Xh0-Hd-Sv5"/>
                 <outlet property="likes" destination="qQR-bJ-rSK" id="6yI-X8-ZDg"/>
+                <outlet property="playImage" destination="pHS-Ef-YHH" id="Qgu-Hg-mPd"/>
                 <outlet property="postImage" destination="uoy-g8-lob" id="Ucp-pV-xde"/>
                 <outlet property="postTitle" destination="efg-jq-fGn" id="Q6i-S5-7An"/>
                 <outlet property="postTitle2" destination="BJW-0g-S5s" id="0m1-sy-wuQ"/>
@@ -134,6 +144,7 @@
     </objects>
     <resources>
         <image name="comment.png" width="48" height="45"/>
+        <image name="player_button_play_active.png" width="27" height="31"/>
         <image name="uparrow.png" width="45" height="48"/>
     </resources>
 </document>

@@ -74,6 +74,6 @@ class FlickInterface: NSObject {
       } else {
         return FlickPost()
       }
-    })
+    }).filter( { $0.id != "" } )
   }
 }
