@@ -21,25 +21,7 @@ class InstaInterface: NSObject {
         CurrentInstaItems.sharedInstance.instaPosts = parseList(list: response["data"] as! [Any])
       }
     })
-  }
-  
-  
-//  /**
-//   parse
-//   Takes a JSON object and pulls out the necessary values.\
-//   */
-//  class func parseImage(json:[String: Any]) -> InstaPostImage {
-//    let post : InstaPostImage = InstaPostImage()
-//    
-//    return post
-//  }
-//  
-//  class func parseVideo(json:[String: Any]) -> InstaPostImage {
-//    let post : InstaPostVideo = InstaPostVideo()
-//    
-//    return post
-//  }
-//  
+  } 
   
   
   /**

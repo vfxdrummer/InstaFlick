@@ -1,5 +1,5 @@
 //
-//  instaViewModel.swift
+//  FlickViewModel.swift
 //  Earbits Radio
 //
 //  Created by Timothy Brandt on 3/1/17.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class InstaViewModel: IFViewModel, CurrentInstaProtocol {
+class FlickViewModel: IFViewModel, CurrentFlickProtocol {
   
   func setup() {
-    CurrentInstaItems.sharedInstance.delegate = self
+    CurrentFlickItems.sharedInstance.delegate = self
   }
   
-  var posts : [InstaPost] {
+  var posts : [FlickPost] {
     get {
-      return CurrentInstaItems.sharedInstance.instaPosts
+      return CurrentFlickItems.sharedInstance.flickPosts
     }
   }
   
@@ -24,19 +24,19 @@ class InstaViewModel: IFViewModel, CurrentInstaProtocol {
    loadInsta
    Fetch Insta
    */
-  func loadInstaPosts() {
-    InstaInterface.getInstaPosts()
+  func loadFlickPosts() {
+    FlickInterface.getFlickPosts()
   }
   
-  //  MARK: CurrentInstaProtocol Delegate Methods
+  //  MARK: CurrentFlickProtocol Delegate Methods
   
   /**
    update
    Fired by the CurrentInstaItems when an update occurs for the posts
-   - parameter posts: [InstaPost]
+   - parameter posts: [FlickPost]
    */
-  func update(posts:[InstaPost]) {
-    if let view = self.vc as? InstaPostView {
+  func update(posts:[FlickPost]) {
+    if let view = self.vc as? FlickPostView {
       view.reload()
     }
   }

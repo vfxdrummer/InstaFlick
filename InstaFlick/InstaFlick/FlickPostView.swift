@@ -1,5 +1,6 @@
+
 //
-//  InstaPostView.swift
+//  FlickPostView.swift
 //  Earbits Radio
 //
 //  Created by Timothy Brandt on 3/1/17.
@@ -10,11 +11,11 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class FlickPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
-  private var instaViewModel : InstaViewModel? = nil
+  private var flickViewModel : FlickViewModel? = nil
   
-  @IBOutlet weak var collectionInsta: UICollectionView!
+  @IBOutlet weak var collectionFlick: UICollectionView!
   
   //  MARK: UIView Lifecycle Methods
   
@@ -22,35 +23,35 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     super.viewDidLoad()
     
     // Setup the ViewModel
-    instaViewModel = InstaViewModel(viewController: self)
-    instaViewModel?.setup()
+    flickViewModel = FlickViewModel(viewController: self)
+    flickViewModel?.setup()
     
     // Setup the Nibs
-    let InstaImagePostNib = UINib(nibName: "InstaImageCell", bundle: nil)
+    let FlickImagePostNib = UINib(nibName: "FlickImageCell", bundle: nil)
     
     // Setup the Collection
-    collectionInsta.register(InstaImagePostNib, forCellWithReuseIdentifier: "InstaImageCell")
+    collectionFlick.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
     
     // Setup the Delegates
-    collectionInsta.delegate = self
-    collectionInsta.dataSource = self
+    collectionFlick.delegate = self
+    collectionFlick.dataSource = self
 //    if #available(iOS 10.0, *) {
-//      collectionInsta.refreshControl = self.refreshControl!
+//      collectionFlick.refreshControl = self.refreshControl!
 //    } else {
-//      collectionInsta.addSubview(self.refreshControl!)
+//      collectionFlick.addSubview(self.refreshControl!)
 //    }
     
     // Setup the Title
-    self.restorationIdentifier = "InstaPost"
+    self.restorationIdentifier = "FlickPost"
     
-    self.refreshControl!.addTarget(self, action: #selector(InstaPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
+    self.refreshControl!.addTarget(self, action: #selector(FlickPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
     
-    instaViewModel?.loadInstaPosts()
+    flickViewModel?.loadFlickPosts()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     // Setup the Title
-    self.tabBarController?.title = Constants.instaTitle.rawValue
+    self.tabBarController?.title = Constants.flickTitle.rawValue
   }
   
   override func didReceiveMemoryWarning() {
@@ -58,12 +59,12 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   }
   
   func refresh(refreshControl: UIRefreshControl) {
-    instaViewModel?.loadInstaPosts()
+    flickViewModel?.loadFlickPosts()
     
 //    if #available(iOS 10.0, *) {
-//      if collectionInsta.refreshControl!.isRefreshing
+//      if collectionFlick.refreshControl!.isRefreshing
 //      {
-//        collectionInsta.refreshControl?.endRefreshing()
+//        collectionFlick.refreshControl?.endRefreshing()
 //      }
 //    }
     
@@ -78,13 +79,13 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
    */
   func reload() {
     tableView.reloadData()
-    collectionInsta.reloadData()
+    collectionFlick.reloadData()
   }
   
   //  MARK: UITableViewDelegate & UITableViewDataSource Methods
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return 2
   }
   
   override func tableView(_ tableView: UITableView,
@@ -93,41 +94,36 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UIScreen.main.bounds.height
+    switch (indexPath.row) {
+    case 0:
+      return 100
+    default:
+      return UIScreen.main.bounds.height - 100
+    }
   }
 
   
   //  MARK: UICollectionViewDelegate & UICollectionViewDataSource Methods
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let InstaPostObj = instaViewModel!.posts[indexPath.row]
-    guard InstaPostObj.insta_post_type == "video" else { return }
-    
-    let videoURL = NSURL(string: (InstaPostObj.video_standard_resolution?.url)!)
-    let player = AVPlayer(url: videoURL! as URL)
-    let playerViewController = AVPlayerViewController()
-    playerViewController.player = player
-    self.present(playerViewController, animated: true) {
-      playerViewController.player!.play()
-    }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let InstaPostObj = instaViewModel!.posts[indexPath.row]
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstaImageCell", for: indexPath as IndexPath) as! InstaImageCell
-    cell.load(instaPost: InstaPostObj)
+    let flickPostObj = flickViewModel!.posts[indexPath.row]
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickImageCell", for: indexPath as IndexPath) as! FlickImageCell
+    cell.load(flickPost: flickPostObj)
     
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return instaViewModel!.posts.count
+    return flickViewModel!.posts.count
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let InstaPostObj = instaViewModel!.posts[indexPath.row]
-    let ratio = InstaPostObj.image_standard_resolution?.ratio
-    let height : CGFloat = ratio! * UIScreen.main.bounds.width
+    let FlickPostObj = flickViewModel!.posts[indexPath.row]
+//    let ratio = FlickPostObj.image_standard_resolution?.ratio
+    let height : CGFloat = UIScreen.main.bounds.width
     let width : CGFloat = UIScreen.main.bounds.width
     return CGSize(width:width, height:height)
   }

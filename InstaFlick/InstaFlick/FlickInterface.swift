@@ -1,5 +1,5 @@
 //
-//  InstaInterface.swift
+//  FlickInterface.swift
 //  Earbits Radio
 //
 //  Created by Timothy Brandt on 1/30/17.
@@ -9,82 +9,46 @@
 import UIKit
 import SwiftyJSON
 
-class InstaInterface: NSObject {
+class FlickInterface: NSObject {
 
   /**
-   getInstaPosts
-   Fetches Insta
+   getFlickPosts
+   Fetches Flick
    */
-  class func getInstaPosts() {
-    APIService.getInstaPosts(handler: { response in
-      if (response["data"] != nil) {
-        CurrentInstaItems.sharedInstance.instaPosts = parseList(list: response["data"] as! [Any])
+  class func getFlickPosts() {
+    APIService.getFlickPosts(handler: { response in
+      if let photoList = (response["photos"] as! [String:Any])["photo"] as? [Any] {
+        CurrentFlickItems.sharedInstance.flickPosts = parseList(list:photoList)
       }
     })
   }
-  
-  
-//  /**
-//   parse
-//   Takes a JSON object and pulls out the necessary values.\
-//   */
-//  class func parseImage(json:[String: Any]) -> InstaPostImage {
-//    let post : InstaPostImage = InstaPostImage()
-//    
-//    return post
-//  }
-//  
-//  class func parseVideo(json:[String: Any]) -> InstaPostImage {
-//    let post : InstaPostVideo = InstaPostVideo()
-//    
-//    return post
-//  }
-//  
   
   
   /**
    parse
    Takes a JSON object and pulls out the necessary values.\
    */
-  class func parse(json:[String: Any]) -> InstaPost {
-    let post : InstaPost = InstaPost()
-    
-    switch(json["type"] as! String) {
-    case "video":
-      post.insta_post_type = "video"
-    case "image":
-      post.insta_post_type = "image"
-    default:
-      return post
-    }
-    
+  class func parse(json:[String: Any]) -> FlickPost {
+    let post : FlickPost = FlickPost()
+      
     if let id = json["id"] as? String {
       post.id = id
     }
     
-    if let caption = json["caption"] as? [String:Any] {
-      post.title = caption["text"]! as! String
+    if let title = json["title"] as? String {
+      post.title = title
     }
     
-    if let likes = json["likes"] as? [String:Any] {
-      post.likes = likes["count"] as! Int
+    if let farm = json["farm"] as? Int {
+      post.farm = farm
     }
     
-    if let comments = json["comments"] as? [String:Any] {
-      post.comments = comments["count"] as! Int
+    if let server = json["server"] as? String {
+      post.server = server
     }
     
-    
-    if let images = json["images"] as? [String:Any] {
-      if images["standard_resolution"] != nil {
-        post.image_standard_resolution = InstaImage.initWithJSON(json: images["standard_resolution"] as! [String : Any])
-      }
-    }
-    
-    if let videos = json["videos"] as? [String:Any] {
-      if videos["standard_resolution"] != nil {
-        post.video_standard_resolution = InstaVideo.initWithJSON(json: videos["standard_resolution"] as! [String : Any])
-      }
+    if let secret = json["secret"] as? String {
+      post.secret = secret
     }
     
     return post
@@ -97,13 +61,13 @@ class InstaInterface: NSObject {
    - parameter usePNG: Bool
    - returns: [Channel]
    */
-  class func parseList(list:Array<Any>) -> [InstaPost] {
+  class func parseList(list:Array<Any>) -> [FlickPost] {
     return list.map( {
       if let json = $0 as? [String: Any] {
         return parse(json: json)
       } else {
-        return InstaPost()
+        return FlickPost()
       }
-    }).filter( { $0.image_standard_resolution != nil } )
+    })
   }
 }

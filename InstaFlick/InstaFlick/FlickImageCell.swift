@@ -1,5 +1,5 @@
 //
-//  InstaImageCell.swift
+//  FlickImageCell.swift
 //  Earbits Radio
 //
 //  Created by Timothy Brandt on 1/30/17.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-class InstaImageCell: UICollectionViewCell {
+class FlickImageCell: UICollectionViewCell {
   
   @IBOutlet weak var postImage: UIImageView!
   @IBOutlet weak var postTitle: UILabel!
@@ -30,12 +30,10 @@ class InstaImageCell: UICollectionViewCell {
    Loads a Insta post object and sets the content
    - parameter InstaPost: InstaPost
    */
-  func load(instaPost:InstaPost) {
-    postTitle.text = instaPost.title
-    postTitle2.text = instaPost.title
-    likes.text = String(instaPost.likes)
-    commentCount.text = String(instaPost.comments)
-    if let image = (instaPost.image_standard_resolution?.url)! as? String {
+  func load(flickPost:FlickPost) {
+    postTitle.text = flickPost.title
+    postTitle2.text = flickPost.title
+    if let image = (flickPost.image) as? String {
       postImage.fadeIn(image)
     }
   }
