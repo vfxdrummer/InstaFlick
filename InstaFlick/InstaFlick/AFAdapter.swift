@@ -1,9 +1,9 @@
 //
 //  AFAdapter.swift
-//  Earbits Radio
+//  InstaFlick
 //
 //  Created by Timothy Brandt 3/1/17.
-//  Copyright (c) 2015 Earbits. All rights reserved.
+//  Copyright (c) 2015 BrandtApps. All rights reserved.
 //
 //  USAGE: AFAdapter is a wrapper for Alamofire calls
 

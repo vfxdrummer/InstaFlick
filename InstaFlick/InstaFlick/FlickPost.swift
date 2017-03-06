@@ -1,9 +1,9 @@
 //
 //  FlickPost.swift
-//  Earbits Radio
+//  InstaFlick
 //
 //  Created by Timothy Brandt on 1/30/17.
-//  Copyright (c) 2015 Earbits. All rights reserved.
+//  Copyright (c) 2015 BrandtApps. All rights reserved.
 //
 //  USAGE: Stored in Realm. PartialFlickPost appears in search results
 

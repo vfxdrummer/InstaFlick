@@ -1,9 +1,9 @@
 //
 //  .swift
-//  Earbits Radio
+//  InstaFlick
 //
 //  Created by Timothy Brandt on 11/23/15.
-//  Copyright © 2015 Earbits. All rights reserved.
+//  Copyright © 2015 BrandtApps. All rights reserved.
 //
 //  USAGE:  User information, cookies, and other constants that are retrieved for the application are stored here.
 

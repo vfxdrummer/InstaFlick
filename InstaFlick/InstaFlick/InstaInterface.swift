@@ -1,9 +1,9 @@
 //
 //  InstaInterface.swift
-//  Earbits Radio
+//  InstaFlick
 //
 //  Created by Timothy Brandt on 1/30/17.
-//  Copyright © 2016 Earbits. All rights reserved.
+//  Copyright © 2017 BrandtApps. All rights reserved.
 //
 
 import UIKit

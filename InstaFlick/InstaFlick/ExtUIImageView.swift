@@ -1,9 +1,9 @@
 //
 //  ExtensionUIImageView.swift
-//  Earbits Radio
+//  InstaFlick
 //
 //  Created by Tim Brandt on 3/1/17.
-//  Copyright © 2015 Earbits. All rights reserved.
+//  Copyright © 2015 BrandtApps. All rights reserved.
 //
 //  USAGE: Loading images into UIImageViews with the help of SDWebImage
 

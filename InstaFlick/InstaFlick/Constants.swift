@@ -3,7 +3,7 @@
 //  InstaFlick
 //
 //  Created by Tim Brandt on 3/1/17.
-//  Copyright © 2016 Tim Brandt. All rights reserved.
+//  Copyright © 2017 Tim Brandt. All rights reserved.
 //
 
 import UIKit
