@@ -61,7 +61,8 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
    - parameter searchTerm: String
    */
   func changeSearchTerm(searchTerm: String) {
-    CurrentFlickItems.sharedInstance.searchTerm = searchTerm
+    loading = false
+    CurrentFlickItems.sharedInstance.searchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
     loadFlickPosts()
   }
   
