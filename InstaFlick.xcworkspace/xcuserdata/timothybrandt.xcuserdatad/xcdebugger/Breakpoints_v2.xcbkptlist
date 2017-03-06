@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickPost.swift"
-            timestampString = "510452075.403378"
+            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
+            timestampString = "510456584.36929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "FlickPost"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickImageCell.swift"
-            timestampString = "510452952.428189"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "load(flickPost:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "getFlickPosts(search:page:photosPerPage:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickImageCell.swift"
-            timestampString = "510452952.428189"
+            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
+            timestampString = "510456585.791267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "load(flickPost:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getFlickPosts(search:page:photosPerPage:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickPostView.swift"
-            timestampString = "510452489.461205"
+            filePath = "InstaFlick/InstaFlick/FlickViewModel.swift"
+            timestampString = "510457920.957549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "loadNextPage()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/APIService.swift"
-            timestampString = "510454380.726221"
+            filePath = "InstaFlick/InstaFlick/FlickViewModel.swift"
+            timestampString = "510457920.957549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "getFlickPosts(search:page:photosPerPage:handler:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "loadFlickPosts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

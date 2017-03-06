@@ -128,4 +128,14 @@ class FlickPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     return CGSize(width:width, height:height)
   }
   
+  func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    let yOffset = collectionFlick.contentOffset.y / CGFloat(flickViewModel!.page)
+    let height = collectionFlick.contentSize.height / CGFloat(flickViewModel!.page)
+    let scrolledPercentage = yOffset / height
+    print("!!!!!!!!!!!!!!!!!!!!!! \(scrolledPercentage) \(flickViewModel!.page) \(yOffset) \(height)")
+    if (scrolledPercentage > 0.6) {
+      flickViewModel!.loadNextPage()
+    }
+  }
+  
 }
