@@ -51,7 +51,7 @@ class CurrentFlickItems : NSObject {
     }
   }
   var page : Int = 1
-  var postsPerPage = 25
+  var postsPerPage = 30
   var flickPosts : [FlickPost] = [] {
     didSet {
       _ = delegates.flatMap({

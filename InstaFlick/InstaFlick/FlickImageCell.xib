@@ -25,20 +25,20 @@
                                 <rect key="frame" x="5" y="2.5" width="290" height="325"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJW-0g-S5s" userLabel="Post Title2">
-                                <rect key="frame" x="-1" y="294" width="300" height="27"/>
+                                <rect key="frame" x="-1" y="300.5" width="300" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="hdO-1d-3UM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.0029286930138050431" green="0.010018620466321293" blue="0.0088468698440754591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efg-jq-fGn">
-                                <rect key="frame" x="0.0" y="293.5" width="300" height="26.5"/>
+                                <rect key="frame" x="0.0" y="299.5" width="300" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="xDn-ss-wtI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.28110318747684337" green="0.96024935233160624" blue="0.85471465901837573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>

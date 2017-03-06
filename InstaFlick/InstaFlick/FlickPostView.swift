@@ -131,18 +131,14 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let FlickPostObj = flickViewModel!.posts[indexPath.row]
-//    let ratio = FlickPostObj.image_standard_resolution?.ratio
-    let height : CGFloat = UIScreen.main.bounds.width
-    let width : CGFloat = UIScreen.main.bounds.width
+    let height : CGFloat = UIScreen.main.bounds.width / 2.0
+    let width : CGFloat = UIScreen.main.bounds.width / 2.0
     return CGSize(width:width, height:height)
   }
   
   func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    let yOffset = collectionFlick.contentOffset.y / CGFloat(flickViewModel!.page)
-    let height = collectionFlick.contentSize.height / CGFloat(flickViewModel!.page)
-    let scrolledPercentage = yOffset / height
-//    print("!!!!!!!!!!!!!!!!!!!!!! \(scrolledPercentage) \(flickViewModel!.page) \(yOffset) \(height)")
-    if (scrolledPercentage > 0.6) {
+    let diff = collectionFlick.contentSize.height - collectionFlick.contentOffset.y
+    if (diff < (6.0 * UIScreen.main.bounds.height)) {
       flickViewModel!.loadNextPage()
     }
   }
