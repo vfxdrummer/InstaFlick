@@ -66,7 +66,11 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
   func update(posts:[FlickPost]) {
     loading = false
     if let view = self.vc as? FlickPostView {
-      view.reload()
+      if (page > 1) {
+        view.reloadCollection()
+      } else {
+        view.reload()
+      }
     }
   }
   /**

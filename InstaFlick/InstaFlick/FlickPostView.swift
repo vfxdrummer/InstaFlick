@@ -82,6 +82,13 @@ class FlickPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     collectionFlick.reloadData()
   }
   
+  /**
+   reloadCollection
+   */
+  func reloadCollection() {
+    collectionFlick.reloadData()
+  }
+  
   //  MARK: UITableViewDelegate & UITableViewDataSource Methods
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
