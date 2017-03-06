@@ -44,7 +44,7 @@ class CurrentFlickItems : NSObject {
   }
   var searchTerm : String = "dogs" {
     didSet {
-      page = 1
+      self.page = 1
       _ = delegates.flatMap({
         $0.updatedSearchTerm(searchTerm: searchTerm)
       })

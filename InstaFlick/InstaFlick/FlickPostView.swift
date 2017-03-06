@@ -11,11 +11,12 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class FlickPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
   private var flickViewModel : FlickViewModel? = nil
   
   @IBOutlet weak var collectionFlick: UICollectionView!
+  @IBOutlet weak var searchTextField: UITextField!
   
   //  MARK: UIView Lifecycle Methods
   
@@ -33,6 +34,7 @@ class FlickPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     collectionFlick.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
     
     // Setup the Delegates
+    searchTextField.delegate = self
     collectionFlick.delegate = self
     collectionFlick.dataSource = self
 //    if #available(iOS 10.0, *) {
@@ -103,7 +105,7 @@ class FlickPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch (indexPath.row) {
     case 0:
-      return 100
+      return 50
     default:
       return UIScreen.main.bounds.height - 100
     }
@@ -139,10 +141,15 @@ class FlickPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     let yOffset = collectionFlick.contentOffset.y / CGFloat(flickViewModel!.page)
     let height = collectionFlick.contentSize.height / CGFloat(flickViewModel!.page)
     let scrolledPercentage = yOffset / height
-    print("!!!!!!!!!!!!!!!!!!!!!! \(scrolledPercentage) \(flickViewModel!.page) \(yOffset) \(height)")
+//    print("!!!!!!!!!!!!!!!!!!!!!! \(scrolledPercentage) \(flickViewModel!.page) \(yOffset) \(height)")
     if (scrolledPercentage > 0.6) {
       flickViewModel!.loadNextPage()
     }
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    flickViewModel!.changeSearchTerm(searchTerm: textField.text!)
+    return true
   }
   
 }

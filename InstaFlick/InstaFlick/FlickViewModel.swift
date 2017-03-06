@@ -56,6 +56,15 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
     self.loadFlickPosts()
   }
   
+  /**
+   changeSearchTerm
+   - parameter searchTerm: String
+   */
+  func changeSearchTerm(searchTerm: String) {
+    CurrentFlickItems.sharedInstance.searchTerm = searchTerm
+    loadFlickPosts()
+  }
+  
   //  MARK: CurrentFlickProtocol Delegate Methods
   
   /**
@@ -73,13 +82,13 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
       }
     }
   }
+  
   /**
    updatedSearchTerm
    Fired by the CurrentInstaItems when an update occurs for the searchTerm
    - parameter searchTerm: String
    */
   func updatedSearchTerm(searchTerm: String) {
-    
   }
   
 }
