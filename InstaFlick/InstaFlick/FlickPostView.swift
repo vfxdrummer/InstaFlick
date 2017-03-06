@@ -37,11 +37,6 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
     searchTextField.delegate = self
     collectionFlick.delegate = self
     collectionFlick.dataSource = self
-//    if #available(iOS 10.0, *) {
-//      collectionFlick.refreshControl = self.refreshControl!
-//    } else {
-//      collectionFlick.addSubview(self.refreshControl!)
-//    }
     
     // Setup the Title
     self.restorationIdentifier = "FlickPost"
@@ -61,14 +56,8 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
   }
   
   func refresh(refreshControl: UIRefreshControl) {
-    flickViewModel?.loadFlickPosts()
-    
-//    if #available(iOS 10.0, *) {
-//      if collectionFlick.refreshControl!.isRefreshing
-//      {
-//        collectionFlick.refreshControl?.endRefreshing()
-//      }
-//    }
+    flickViewModel?.refreshFlickPosts()
+    collectionFlick.setContentOffset(CGPoint(x: 0,y :0), animated: true) 
     
     if self.refreshControl!.isRefreshing
     {

@@ -85,7 +85,6 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Flick" image="genre.png" selectedImage="genre.png" id="pak-Fh-9gX" userLabel="Flick"/>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="893-Nl-ZXX">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -181,7 +180,6 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Insta" image="genre.png" selectedImage="genre.png" id="cqX-rT-dKU" userLabel="Insta"/>
-                    <navigationItem key="navigationItem" title="Master" id="xY5-fm-0h9"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="5kx-wg-QX6">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>

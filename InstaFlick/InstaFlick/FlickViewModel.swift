@@ -47,6 +47,15 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
   }
   
   /**
+   refreshFlickPosts
+   */
+  func refreshFlickPosts() {
+    loading = false
+    CurrentFlickItems.sharedInstance.page = 1
+    self.loadFlickPosts()
+  }
+  
+  /**
    loadNextPage
    Fetch More Flick
    */

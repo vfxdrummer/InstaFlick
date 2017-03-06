@@ -34,11 +34,11 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     // Setup the Delegates
     collectionInsta.delegate = self
     collectionInsta.dataSource = self
-//    if #available(iOS 10.0, *) {
-//      collectionInsta.refreshControl = self.refreshControl!
-//    } else {
-//      collectionInsta.addSubview(self.refreshControl!)
-//    }
+    if #available(iOS 10.0, *) {
+      collectionInsta.refreshControl = self.refreshControl!
+    } else {
+      collectionInsta.addSubview(self.refreshControl!)
+    }
     
     // Setup the Title
     self.restorationIdentifier = "InstaPost"
@@ -60,12 +60,12 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   func refresh(refreshControl: UIRefreshControl) {
     instaViewModel?.loadInstaPosts()
     
-//    if #available(iOS 10.0, *) {
-//      if collectionInsta.refreshControl!.isRefreshing
-//      {
-//        collectionInsta.refreshControl?.endRefreshing()
-//      }
-//    }
+    if #available(iOS 10.0, *) {
+      if collectionInsta.refreshControl!.isRefreshing
+      {
+        collectionInsta.refreshControl?.endRefreshing()
+      }
+    }
     
     if self.refreshControl!.isRefreshing
     {
