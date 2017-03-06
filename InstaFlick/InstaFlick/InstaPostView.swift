@@ -13,6 +13,7 @@ import AVFoundation
 class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
   private var instaViewModel : InstaViewModel? = nil
+  private var instaRefreshControl : UIRefreshControl? = nil
   
   @IBOutlet weak var collectionInsta: UICollectionView!
   
@@ -34,16 +35,19 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     // Setup the Delegates
     collectionInsta.delegate = self
     collectionInsta.dataSource = self
-    if #available(iOS 10.0, *) {
-      collectionInsta.refreshControl = self.refreshControl!
-    } else {
-      collectionInsta.addSubview(self.refreshControl!)
-    }
     
     // Setup the Title
     self.restorationIdentifier = "InstaPost"
     
+    // Refresh Control
+    instaRefreshControl = UIRefreshControl()
+    if #available(iOS 10.0, *) {
+      collectionInsta.refreshControl = instaRefreshControl!
+    } else {
+      collectionInsta.addSubview(instaRefreshControl!)
+    }
     self.refreshControl!.addTarget(self, action: #selector(InstaPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
+    self.instaRefreshControl!.addTarget(self, action: #selector(InstaPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
     
     instaViewModel?.loadInstaPosts()
   }
@@ -59,24 +63,23 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   
   func refresh(refreshControl: UIRefreshControl) {
     instaViewModel?.loadInstaPosts()
-    
-    if #available(iOS 10.0, *) {
-      if collectionInsta.refreshControl!.isRefreshing
+  }
+  
+  func endRefreshing() {
+    _ = [self.refreshControl!, self.instaRefreshControl!].map( {
+      if $0.isRefreshing
       {
-        collectionInsta.refreshControl?.endRefreshing()
+        collectionInsta.setContentOffset(CGPoint(x: 0,y :0), animated: true)
+        $0.endRefreshing()
       }
-    }
-    
-    if self.refreshControl!.isRefreshing
-    {
-      self.refreshControl!.endRefreshing()
-    }
+    })
   }
   
   /**
    reload
    */
   func reload() {
+    self.endRefreshing()
     tableView.reloadData()
     collectionInsta.reloadData()
   }

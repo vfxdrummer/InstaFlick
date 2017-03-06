@@ -14,6 +14,7 @@ import AVFoundation
 class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
   private var flickViewModel : FlickViewModel? = nil
+  private var flickRefreshControl : UIRefreshControl? = nil
   
   @IBOutlet weak var collectionFlick: UICollectionView!
   @IBOutlet weak var searchTextField: UITextField!
@@ -41,7 +42,15 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
     // Setup the Title
     self.restorationIdentifier = "FlickPost"
     
+    // refreshControl
+    flickRefreshControl = UIRefreshControl()
+    if #available(iOS 10.0, *) {
+      collectionFlick.refreshControl = flickRefreshControl
+    } else {
+      collectionFlick.addSubview(flickRefreshControl!)
+    }
     self.refreshControl!.addTarget(self, action: #selector(FlickPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
+    self.flickRefreshControl!.addTarget(self, action: #selector(FlickPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
     
     flickViewModel?.loadFlickPosts()
   }
@@ -57,18 +66,23 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
   
   func refresh(refreshControl: UIRefreshControl) {
     flickViewModel?.refreshFlickPosts()
-    collectionFlick.setContentOffset(CGPoint(x: 0,y :0), animated: true) 
-    
-    if self.refreshControl!.isRefreshing
-    {
-      self.refreshControl!.endRefreshing()
-    }
+  }
+  
+  func endRefreshing() {
+    _ = [self.refreshControl!, self.flickRefreshControl!].map( {
+      if $0.isRefreshing
+      {
+        collectionFlick.setContentOffset(CGPoint(x: 0,y :0), animated: true)
+        $0.endRefreshing()
+      }
+    })
   }
   
   /**
    reload
    */
   func reload() {
+    self.endRefreshing()
     tableView.reloadData()
     collectionFlick.reloadData()
   }
