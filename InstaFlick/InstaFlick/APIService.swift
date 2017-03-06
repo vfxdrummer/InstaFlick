@@ -16,8 +16,8 @@ import SwiftyJSON
 
 class APIService: NSObject {
   
-  class func getFlickPosts(handler: @escaping (_ json: [String: Any]) -> ()) {
-    let urlFlick = Constants.flickPostsURL.rawValue
+  class func getFlickPosts(search:String, page:String, photosPerPage:String, handler: @escaping (_ json: [String: Any]) -> ()) {
+    let urlFlick = String(format:Constants.flickPostsURL.rawValue, search, page, photosPerPage)
     AFAdapter.GET(urlString:urlFlick, handler: handler)
   }
   
@@ -26,4 +26,25 @@ class APIService: NSObject {
     AFAdapter.GET(urlString:urlInsta, handler: handler)
   }
   
+//  /**
+//   composeAPIURL
+//   Recursively compose the URL GET params and then return a finished URL for loading
+//   - parameter key:    String (see Constants for definition)
+//   - parameter values: values
+//   - returns: NSURL
+//   */
+//  private func composeAPIURL(key:String, values:NSArray) -> NSURL {
+//    let path = Constants.endPoints[key]
+//    let completed = String.withFormat(path!, list: values.toMutableArray())
+//    
+//    // For the streamID and the stream endpoint we need to pass back a client_token if it's available (which may not be)
+//    // IMPORTANT: This snippet is required for consistent playback
+//    if key == "streamID" || key == "stream" || key == "search" {
+//      if let param = AFAdapter.serverTokenParam {
+//        return (completed + param).toURL()
+//      }
+//    }
+//    
+//    return completed.toURL()
+//  }
 }

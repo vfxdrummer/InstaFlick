@@ -25,7 +25,7 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
    Fetch Insta
    */
   func loadFlickPosts() {
-    FlickInterface.getFlickPosts()
+    FlickInterface.getFlickPosts(search:"dogs", page:"1", photosPerPage:"25")
   }
   
   //  MARK: CurrentFlickProtocol Delegate Methods
