@@ -15,7 +15,7 @@ class FlickInterface: NSObject {
    getFlickPosts
    Fetches Flick
    */
-  class func getFlickPosts(search:String, page:String, photosPerPage:String) {
+  class func getFlickPosts(search:String, page:Int, photosPerPage:Int) {
     APIService.getFlickPosts(search:search, page:page, photosPerPage:photosPerPage, handler: { response in
       if let photoList = (response["photos"] as! [String:Any])["photo"] as? [Any] {
         CurrentFlickItems.sharedInstance.flickPosts = parseList(list:photoList)

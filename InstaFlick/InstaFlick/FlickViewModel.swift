@@ -13,6 +13,21 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
   func setup() {
     CurrentFlickItems.sharedInstance.delegate = self
   }
+  var searchTerm : String {
+    get {
+      return CurrentFlickItems.sharedInstance.searchTerm
+    }
+  }
+  var page : Int  {
+    get {
+      return CurrentFlickItems.sharedInstance.page
+    }
+  }
+  var postsPerPage : Int  {
+    get {
+      return CurrentFlickItems.sharedInstance.postsPerPage
+    }
+  }
   
   var posts : [FlickPost] {
     get {
@@ -25,7 +40,7 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
    Fetch Insta
    */
   func loadFlickPosts() {
-    FlickInterface.getFlickPosts(search:"dogs", page:"1", photosPerPage:"25")
+    FlickInterface.getFlickPosts(search:self.searchTerm, page:self.page, photosPerPage:self.postsPerPage)
   }
   
   //  MARK: CurrentFlickProtocol Delegate Methods
@@ -39,6 +54,14 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
     if let view = self.vc as? FlickPostView {
       view.reload()
     }
+  }
+  /**
+   updatedSearchTerm
+   Fired by the CurrentInstaItems when an update occurs for the searchTerm
+   - parameter searchTerm: String
+   */
+  func updatedSearchTerm(searchTerm: String) {
+    
   }
   
 }

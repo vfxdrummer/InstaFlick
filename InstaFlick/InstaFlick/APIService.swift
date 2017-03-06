@@ -16,8 +16,8 @@ import SwiftyJSON
 
 class APIService: NSObject {
   
-  class func getFlickPosts(search:String, page:String, photosPerPage:String, handler: @escaping (_ json: [String: Any]) -> ()) {
-    let urlFlick = String(format:Constants.flickPostsURL.rawValue, search, page, photosPerPage)
+  class func getFlickPosts(search:String, page:Int, photosPerPage:Int, handler: @escaping (_ json: [String: Any]) -> ()) {
+    let urlFlick = String(format:Constants.flickPostsURL.rawValue, search, String(page), String(photosPerPage))
     AFAdapter.GET(urlString:urlFlick, handler: handler)
   }
   

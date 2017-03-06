@@ -32,6 +32,7 @@ class CurrentInstaItems : NSObject {
 //  MARK: CurrentFlickItems
 protocol CurrentFlickProtocol {
   func update(posts:[FlickPost])
+  func updatedSearchTerm(searchTerm: String)
 }
 class CurrentFlickItems : NSObject {
   static let sharedInstance = CurrentFlickItems()
@@ -41,6 +42,16 @@ class CurrentFlickItems : NSObject {
       delegates.append(delegate!)
     }
   }
+  var searchTerm : String = "dogs" {
+    didSet {
+      page = 1
+      _ = delegates.flatMap({
+        $0.updatedSearchTerm(searchTerm: searchTerm)
+      })
+    }
+  }
+  var page : Int = 1
+  var postsPerPage = 25
   var flickPosts : [FlickPost] = [] {
     didSet {
       _ = delegates.flatMap({
