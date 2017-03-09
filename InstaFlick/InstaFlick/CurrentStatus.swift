@@ -62,3 +62,45 @@ class CurrentFlickItems : NSObject {
 }
 
 
+//  MARK: CurrentFlickHorizontalItems
+protocol CurrentFlickHorizontalProtocol {
+  func update(posts:[FlickPost], type:FlickrPostType)
+}
+class CurrentFlickHorizontalItems : NSObject {
+  static let sharedInstance = CurrentFlickHorizontalItems()
+  private var delegates : [CurrentFlickHorizontalProtocol] = []
+  var delegate : CurrentFlickHorizontalProtocol? = nil {
+    didSet {
+      delegates.append(delegate!)
+    }
+  }
+  var dogs : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: dogs, type: FlickrPostType.Dogs)
+      })
+    }
+  }
+  var cats : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: cats, type: FlickrPostType.Cats)
+      })
+    }
+  }
+  var monkeys : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: monkeys, type: FlickrPostType.Monkeys)
+      })
+    }
+  }
+  var elephants : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: elephants, type: FlickrPostType.Elephants)
+      })
+    }
+  }
+}
+
