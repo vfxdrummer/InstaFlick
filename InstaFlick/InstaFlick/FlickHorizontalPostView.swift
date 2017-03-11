@@ -123,31 +123,25 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    // grab cell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickImageCell", for: indexPath as IndexPath) as! FlickImageCell
+    
+    let flickPostObj:FlickPost
     switch collectionView.tag {
     case 0: // Dogs
-      let flickPostObj = flickHorizontalViewModel!.dogPosts[indexPath.row]
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickImageCell", for: indexPath as IndexPath) as! FlickImageCell
-      cell.load(flickPost: flickPostObj)
-      return cell
+      flickPostObj = flickHorizontalViewModel!.dogPosts[indexPath.row]
     case 1: // Cats
-      let flickPostObj = flickHorizontalViewModel!.catPosts[indexPath.row]
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickImageCell", for: indexPath as IndexPath) as! FlickImageCell
-      cell.load(flickPost: flickPostObj)
-      return cell
+      flickPostObj = flickHorizontalViewModel!.catPosts[indexPath.row]
     case 2: // Monkeys
-      let flickPostObj = flickHorizontalViewModel!.monkeyPosts[indexPath.row]
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickImageCell", for: indexPath as IndexPath) as! FlickImageCell
-      cell.load(flickPost: flickPostObj)
-      return cell
+      flickPostObj = flickHorizontalViewModel!.monkeyPosts[indexPath.row]
     case 3: // Elephants
-      let flickPostObj = flickHorizontalViewModel!.elephantPosts[indexPath.row]
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickImageCell", for: indexPath as IndexPath) as! FlickImageCell
-      cell.load(flickPost: flickPostObj)
-      return cell
+      flickPostObj = flickHorizontalViewModel!.elephantPosts[indexPath.row]
     default:
-      let cell = UICollectionViewCell(frame: CGRect.zero)
-      return cell
+      flickPostObj = FlickPost()
+      
     }
+    cell.load(flickPost: flickPostObj)
+    return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -166,28 +160,8 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    var height : CGFloat = 0.0
-    var width : CGFloat = 0.0
-    switch collectionView.tag {
-    case 0: // Recommended
-      width =  self.view.frame.width / 3.5 - 3
-      height = width + self.view.frame.width / 3.5 / 2
-    case 1: // Recent
-      width =  self.view.frame.width / 3.5 - 3
-      height = width + self.view.frame.width / 3.5 / 2
-    case 2: // Mood
-      width =  self.view.frame.width / 3.5 - 3
-      height = width + self.view.frame.width / 3.5 / 2
-    case 3: // Albums
-      width =  self.view.frame.width / 3.5 - 3
-      height = width + self.view.frame.width / 3.5 / 2
-    case 4: // Genre
-      width = (self.view.frame.width / 3) - 8
-      height = width
-    default:
-      width = 0.0
-      height = 0.0
-    }
+    let width : CGFloat = self.view.frame.width / 3.5 - 3
+    let height : CGFloat = width + self.view.frame.width / 3.5 / 2
     return CGSize(width: width, height: height)
   }
   
