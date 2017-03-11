@@ -58,6 +58,8 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    // Setup the Title
+    self.tabBarController?.title = Constants.flickHorizontalTitle
     tableView.contentInset.bottom = 40.0
   }
   
