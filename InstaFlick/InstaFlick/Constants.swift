@@ -14,6 +14,7 @@ enum StoryboardName : String {
 }
 
 public enum Constants: String {
+  case defaultFlickSearchTerm = "dogs"
   case flickTitle = "Flick"
   case flickPostsURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=3f93cfcb6cb49b3f167bf7282c469607&tags=%@&page=%@&per_page=%@&format=json&nojsoncallback=1"
   
