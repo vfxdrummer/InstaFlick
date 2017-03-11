@@ -21,9 +21,9 @@ public enum Constants: String {
   case instaPostsURL = "https://api.instagram.com/v1/users/self/media/recent/?access_token=1278143711.9f65e75.fdf706f15abb4635b91592a87dde1c7f"
 }
 
-enum FlickrPostType {
-  case Dogs
-  case Cats
-  case Monkeys
-  case Elephants
+enum FlickrPostType : String {
+  case Dogs = "Dogs"
+  case Cats = "Cats"
+  case Monkeys = "Monkeys"
+  case Elephants = "Elephants"
 }

@@ -29,14 +29,52 @@ class FlickInterface: NSObject {
     })
   }
   
-  
+  class func getFlickPostsByType(type:FlickrPostType, page:Int, photosPerPage:Int) {
+    APIService.getFlickPosts(search:type.rawValue, page:1, photosPerPage:photosPerPage, handler: { response in
+      if let photoList = (response["photos"] as! [String:Any])["photo"] as? [Any] {
+        let returnedFlickPosts:[FlickPost] = parseList(list:photoList)
+        switch(type) {
+        case FlickrPostType.Dogs:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.dogPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.dogPosts += returnedFlickPosts
+          }
+        case FlickrPostType.Cats:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.catPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.catPosts += returnedFlickPosts
+          }
+        case FlickrPostType.Monkeys:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.monkeyPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.monkeyPosts += returnedFlickPosts
+          }
+        case FlickrPostType.Elephants:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.elephantPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.elephantPosts += returnedFlickPosts
+          }
+        }
+      }
+    })
+  }
+
+
   /**
    parse
    Takes a JSON object and pulls out the necessary values.\
    */
   class func parse(json:[String: Any]) -> FlickPost {
     let post : FlickPost = FlickPost()
-      
+    
     if let id = json["id"] as? String {
       post.id = id
     }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+//
+// This is a collection of singletons that comprise app state
+//
+
 //  MARK: CurrentInstaItems
 protocol CurrentInstaProtocol {
   func update(posts:[InstaPost])
@@ -74,31 +78,31 @@ class CurrentFlickHorizontalItems : NSObject {
       delegates.append(delegate!)
     }
   }
-  var dogs : [FlickPost] = [] {
+  var dogPosts : [FlickPost] = [] {
     didSet {
       _ = delegates.flatMap({
-        $0.update(posts: dogs, type: FlickrPostType.Dogs)
+        $0.update(posts: dogPosts, type: FlickrPostType.Dogs)
       })
     }
   }
-  var cats : [FlickPost] = [] {
+  var catPosts : [FlickPost] = [] {
     didSet {
       _ = delegates.flatMap({
-        $0.update(posts: cats, type: FlickrPostType.Cats)
+        $0.update(posts: catPosts, type: FlickrPostType.Cats)
       })
     }
   }
-  var monkeys : [FlickPost] = [] {
+  var monkeyPosts : [FlickPost] = [] {
     didSet {
       _ = delegates.flatMap({
-        $0.update(posts: monkeys, type: FlickrPostType.Monkeys)
+        $0.update(posts: monkeyPosts, type: FlickrPostType.Monkeys)
       })
     }
   }
-  var elephants : [FlickPost] = [] {
+  var elephantPosts : [FlickPost] = [] {
     didSet {
       _ = delegates.flatMap({
-        $0.update(posts: elephants, type: FlickrPostType.Elephants)
+        $0.update(posts: elephantPosts, type: FlickrPostType.Elephants)
       })
     }
   }

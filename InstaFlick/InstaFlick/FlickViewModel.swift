@@ -79,7 +79,7 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
   
   /**
    update
-   Fired by the CurrentInstaItems when an update occurs for the posts
+   Fired by the CurrentFlickItems when an update occurs for the posts
    - parameter posts: [FlickPost]
    */
   func update(posts:[FlickPost]) {
@@ -95,7 +95,7 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
   
   /**
    updatedSearchTerm
-   Fired by the CurrentInstaItems when an update occurs for the searchTerm
+   Fired by the CurrentFlickItems when an update occurs for the searchTerm
    - parameter searchTerm: String
    */
   func updatedSearchTerm(searchTerm: String) {
