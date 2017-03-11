@@ -46,7 +46,7 @@ class CurrentFlickItems : NSObject {
       delegates.append(delegate!)
     }
   }
-  var searchTerm : String = Constants.defaultFlickSearchTerm.rawValue {
+  var searchTerm : String = Constants.defaultFlickSearchTerm {
     didSet {
       self.page = 1
       _ = delegates.flatMap({

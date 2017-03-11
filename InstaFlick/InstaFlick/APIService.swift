@@ -17,12 +17,12 @@ import SwiftyJSON
 class APIService: NSObject {
   
   class func getFlickPosts(search:String, page:Int, photosPerPage:Int, handler: @escaping (_ json: [String: Any]) -> ()) {
-    let urlFlick = String(format:Constants.flickPostsURL.rawValue, search, String(page), String(photosPerPage))
+    let urlFlick = String(format:Constants.flickPostsURL, search, String(page), String(photosPerPage))
     AFAdapter.GET(urlString:urlFlick, handler: handler)
   }
   
   class func getInstaPosts(handler: @escaping (_ json: [String: Any]) -> ()) {
-    let urlInsta = Constants.instaPostsURL.rawValue
+    let urlInsta = Constants.instaPostsURL
     AFAdapter.GET(urlString:urlInsta, handler: handler)
   }
 }

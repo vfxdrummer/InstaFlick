@@ -57,7 +57,7 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
   
   override func viewWillAppear(_ animated: Bool) {
     // Setup the Title
-    self.tabBarController?.title = Constants.flickTitle.rawValue
+    self.tabBarController?.title = Constants.flickTitle
   }
   
   override func didReceiveMemoryWarning() {

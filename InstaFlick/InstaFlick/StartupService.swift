@@ -23,7 +23,7 @@ class StartupService: NSObject {
       
     // Load Channels
     DispatchQueue.main.async(execute: { // Fetch Initial Images
-      FlickInterface.getFlickPosts(search: Constants.defaultFlickSearchTerm.rawValue, page: 1, photosPerPage: 30)
+      FlickInterface.getFlickPosts(search: Constants.defaultFlickSearchTerm, page: 1, photosPerPage: 30)
       FlickInterface.getFlickPostsByType(type: FlickrPostType.Dogs, page:1, photosPerPage:25)
       FlickInterface.getFlickPostsByType(type: FlickrPostType.Cats, page:1, photosPerPage:25)
       FlickInterface.getFlickPostsByType(type: FlickrPostType.Monkeys, page:1, photosPerPage:25)

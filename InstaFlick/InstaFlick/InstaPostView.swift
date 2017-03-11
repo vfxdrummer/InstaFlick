@@ -56,7 +56,7 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   
   override func viewWillAppear(_ animated: Bool) {
     // Setup the Title
-    self.tabBarController?.title = Constants.instaTitle.rawValue
+    self.tabBarController?.title = Constants.instaTitle
   }
   
   override func didReceiveMemoryWarning() {
