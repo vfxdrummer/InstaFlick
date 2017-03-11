@@ -14,7 +14,6 @@ import AVFoundation
 class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
   private var flickHorizontalViewModel : FlickHorizontalViewModel? = nil
-//  private var flickRefreshControl : UIRefreshControl? = nil
   
   @IBOutlet weak var collectionDogs: UICollectionView!
   @IBOutlet weak var collectionCats: UICollectionView!
@@ -52,17 +51,10 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     // Setup the Title
     self.restorationIdentifier = "FlickHorizontalPost"
     
-//    // refreshControl
-//    flickRefreshControl = UIRefreshControl()
-//    if #available(iOS 10.0, *) {
-//      collectionFlick.refreshControl = flickRefreshControl
-//    } else {
-//      collectionFlick.addSubview(flickRefreshControl!)
-//    }
-//    self.refreshControl!.addTarget(self, action: #selector(FlickHorizontalPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
-//    self.flickRefreshControl!.addTarget(self, action: #selector(FlickHorizontalPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
-//    
-//    flickHorizontalViewModel?.loadFlickPosts()
+    // refreshControl
+    self.refreshControl!.addTarget(self, action: #selector(FlickHorizontalPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
+    
+    flickHorizontalViewModel?.loadFlickPosts()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -74,24 +66,20 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   }
   
   func refresh(refreshControl: UIRefreshControl) {
-//    flickHorizontalViewModel?.refreshFlickPosts()
+    flickHorizontalViewModel?.refreshFlickPosts()
   }
   
-//  func endRefreshing() {
-//    _ = [self.refreshControl!, self.flickRefreshControl!].map( {
-//      if $0.isRefreshing
-//      {
-//        collectionFlick.setContentOffset(CGPoint(x: 0,y :0), animated: true)
-//        $0.endRefreshing()
-//      }
-//    })
-//  }
+  func endRefreshing() {
+    if self.refreshControl?.isRefreshing == true {
+      self.refreshControl?.endRefreshing()
+    }
+  }
   
   /**
    reload
    */
   func reload() {
-    //    self.endRefreshing()
+    self.endRefreshing()
     collectionDogs.reloadData()
     collectionCats.reloadData()
     collectionMonkeys.reloadData()

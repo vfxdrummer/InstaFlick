@@ -13,7 +13,7 @@ class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
   func setup() {
     CurrentFlickHorizontalItems.sharedInstance.delegate = self
   }
-  
+  var loading : Bool = false
   var dogPosts : [FlickPost] {
     get {
       return CurrentFlickHorizontalItems.sharedInstance.dogPosts
@@ -35,7 +35,29 @@ class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
     }
   }
   
-  //  MARK: CurrentFlickProtocol Delegate Methods
+  /**
+   loadFlickPosts
+   Fetch Flick
+   */
+  func loadFlickPosts() {
+    if loading == true { return }
+    loading = true
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.Dogs, page:1, photosPerPage:25)
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.Cats, page:1, photosPerPage:25)
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.Monkeys, page:1, photosPerPage:25)
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.Elephants, page:1, photosPerPage:25)
+    
+  }
+  
+  /**
+   refreshFlickPosts
+   */
+  func refreshFlickPosts() {
+    loading = false
+    self.loadFlickPosts()
+  }
+  
+  //  MARK: CurrentFlickHorizontalProtocol Delegate Methods
   
   /**
    update
@@ -44,14 +66,9 @@ class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
    - parameter type: FlickrPostType
    */
   func update(posts:[FlickPost], type:FlickrPostType){
-//    loading = false
-//    if let view = self.vc as? FlickPostView {
-//      if (page > 1) {
-//        view.reloadCollection()
-//      } else {
-//        view.reload()
-//      }
-//    }
+    if let view = self.vc as? FlickHorizontalPostView {
+      view.reload()
+    }
   }
   
 }

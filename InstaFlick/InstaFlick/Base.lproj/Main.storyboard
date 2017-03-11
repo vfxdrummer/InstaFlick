@@ -149,7 +149,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fPh-GJ-Q4w" id="5Z6-dK-pZD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PV4-9i-SOj" userLabel="Collection Insta">
@@ -410,6 +410,9 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Flick2" image="genre.png" selectedImage="genre.png" id="Fu3-4N-5Th"/>
                     <navigationItem key="navigationItem" id="uX8-V5-gfa"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="iJB-gL-M1k">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="collectionCats" destination="YCz-L9-GhK" id="q3U-PJ-G0P"/>
                         <outlet property="collectionDogs" destination="V44-rt-Ccj" id="O3X-NH-Vkv"/>
