@@ -123,7 +123,7 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let flickPostObj = flickViewModel!.posts[indexPath.row]
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickImageCell", for: indexPath as IndexPath) as! FlickImageCell
-    cell.load(flickPost: flickPostObj)
+    cell.load(flickPost: flickPostObj, roundify: true)
     
     return cell
   }
@@ -133,9 +133,9 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let FlickPostObj = flickViewModel!.posts[indexPath.row]
     let height : CGFloat = UIScreen.main.bounds.width / 2.0
     let width : CGFloat = UIScreen.main.bounds.width / 2.0
+    
     return CGSize(width:width, height:height)
   }
   

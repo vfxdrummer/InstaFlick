@@ -5,7 +5,7 @@
 //  Created by Timothy Brandt on 1/30/17.
 //  Copyright © 2017 BrandtApps. All rights reserved.
 //
-//  USAGE: Used with the SearchView and BrowseView
+//  USAGE: Used with the Flick Views
 
 import UIKit
 
@@ -30,11 +30,23 @@ class FlickImageCell: UICollectionViewCell {
    Loads a Insta post object and sets the content
    - parameter InstaPost: InstaPost
    */
-  func load(flickPost:FlickPost) {
+  func load(flickPost:FlickPost, roundify:Bool=false) {
+    // this is needed to update the cornerRadius
+    self.layoutIfNeeded()
+    
+    // set values
     postTitle.text = flickPost.title
     postTitle2.text = flickPost.title
     if let image = (flickPost.image) as? String {
       postImage.fadeIn(image)
+      postImage.borderize()
+      if (roundify) {
+        postImage.roundify()
+      }
     }
+  }
+  
+  func roundify() {
+    postImage.roundify()
   }
 }
