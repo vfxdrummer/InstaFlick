@@ -45,8 +45,4 @@ class FlickImageCell: UICollectionViewCell {
       }
     }
   }
-  
-  func roundify() {
-    postImage.roundify()
-  }
 }
