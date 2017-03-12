@@ -26,17 +26,15 @@ extension UIView {
     }
   }
   
-//  func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-//    let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-//    rotateAnimation.fromValue = 0.0
-//    rotateAnimation.toValue = CGFloat(M_PI * 2.0)
-//    rotateAnimation.duration = duration
-//    
-//    if let delegate: AnyObject = completionDelegate {
-//      rotateAnimation.delegate = delegate
-//    }
-//    self.layer.addAnimation(rotateAnimation, forKey: nil)
-//  }
+  func animatedDot(withDistance delta: CGFloat, delay: Double) -> CALayer {
+    let dot = CAShapeLayer()
+    dot.backgroundColor = UIColor.cyan.cgColor
+    dot.frame = CGRect(x: 0, y: -10, width: 1, height: 1)
+    
+    self.addAnimationWithDelay(shapeLayer: dot, keyPath: "transform.translation.y", fromValue: 0.0, toValue: -(Double)(delta), duration: 1.0, delay: 0.0, timingFunction:kCAMediaTimingFunctionEaseOut)
+    
+    return dot
+  }
   
   func animatedLineFrom(from: CGPoint, to: CGPoint) -> CAShapeLayer {
     let linePath = UIBezierPath()
@@ -76,9 +74,9 @@ extension UIView {
     replicator.instanceTransform = CATransform3DMakeRotation(CGFloat(M_PI/10), 0, 0, 1)
     
     f11line.strokeEnd = 0
-    self.addAnimationWithDelay(shapeLayer: f11line, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.33, timingFunction:kCAMediaTimingFunctionEaseOut)
+    self.addAnimationWithDelay(shapeLayer: f11line, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 1.0, delay: 0.33, timingFunction:kCAMediaTimingFunctionEaseOut)
     
-    self.addAnimationWithDelay(shapeLayer: f11line, keyPath: "strokeStart", fromValue: 0.0, toValue: 1.0, duration: 1.0, delay: 1.0, timingFunction:kCAMediaTimingFunctionEaseOut)
+    self.addAnimationWithDelay(shapeLayer: f11line, keyPath: "strokeStart", fromValue: 0.0, toValue: 1.0, duration: 1.0, delay: 1.0, timingFunction:kCAMediaTimingFunctionEaseIn)
     
     //line path 2
     let f12linePath = UIBezierPath()
@@ -93,26 +91,38 @@ extension UIView {
     replicator.addSublayer(f12line)
     
     f12line.strokeEnd = 0
-    self.addAnimationWithDelay(shapeLayer: f12line, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.33, timingFunction:kCAMediaTimingFunctionEaseIn)
+    self.addAnimationWithDelay(shapeLayer: f12line, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 1.0, delay: 0.0, timingFunction:kCAMediaTimingFunctionEaseOut)
     
     self.addAnimationWithDelay(shapeLayer: f12line, keyPath: "strokeStart", fromValue: 0.0, toValue: 0.5, duration: 1.0, delay: 1.0, timingFunction:kCAMediaTimingFunctionEaseIn)
     
-    UIView.animate(withDuration: 1.0, delay: 1.0, options: [.curveEaseIn], animations: {
-      f11line.transform = CATransform3DMakeRotation(CGFloat(M_PI_4), 0, 0, 1)
-      f12line.transform = CATransform3DMakeRotation(CGFloat(M_PI_4/2), 0, 0, 1)
-    })
+    // rotations
+    self.addAnimationWithDelay(shapeLayer: f11line, keyPath: "transform.rotation", fromValue: 0.0, toValue: M_PI_4, duration: 2.0, delay: 0.0, timingFunction:kCAMediaTimingFunctionEaseOut)
+    self.addAnimationWithDelay(shapeLayer: f12line, keyPath: "transform.rotation", fromValue: 0.0, toValue: M_PI_4/2, duration: 2.0, delay: 0.0, timingFunction:kCAMediaTimingFunctionEaseOut)
+    
+    replicator.addSublayer(
+      animatedDot(withDistance: 0, delay: 0)
+    )
+    
+    return replicator
+  }
+  
+  func firework2(at atPoint: CGPoint) -> CAReplicatorLayer {
+    let replicator = CAReplicatorLayer()
+    replicator.position = atPoint
+    
+    replicator.instanceCount = 40
+    replicator.instanceTransform = CATransform3DMakeRotation(CGFloat(M_PI/20), 0, 0, 1)
+    
+    replicator.addSublayer(
+      animatedDot(withDistance: 100, delay: 0)
+    )
     
     return replicator
   }
   
   func fireworks() {
-    self.layer.addSublayer(
-      self.animatedLineFrom(from: CGPoint(x: 160, y: 550), to: self.center)
-    )
-    
-    DispatchQueue.main.asyncAfter(deadline: (.now() + 1.0)) {
-      self.layer.addSublayer(self.firework1(at: self.center))
-    }
+//    self.layer.addSublayer(self.firework1(at: self.center))
+    self.layer.addSublayer(self.firework2(at: self.center))
   }
   
 }
