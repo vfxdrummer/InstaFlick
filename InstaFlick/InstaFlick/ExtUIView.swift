@@ -70,9 +70,10 @@ extension UIView {
     
     self.addChainedAnimations(delay:delay, shapeLayer: dot, keyPath: keyPaths, fromValue: fromValues, toValue: toValues, duration: durations, timingFunction:timingFunctions)
     
+    let opacMult = 0.7
     let keyPaths3:[String] = ["opacity", "opacity", "opacity"]
-    let fromValues3 = [1.0, 1.0, 1.0]
-    let toValues3 = [1.0, 1.0, 0]
+    let fromValues3 = [opacMult*1.0, opacMult*1.0, opacMult*1.0]
+    let toValues3 = [opacMult*1.0, opacMult*1.0, 0]
     
     self.addChainedAnimations(delay:delay, shapeLayer: dot, keyPath: keyPaths3, fromValue: fromValues3, toValue: toValues3, duration: durations, timingFunction:timingFunctions)
     
@@ -146,15 +147,26 @@ extension UIView {
   }
   
   func firework2(at atPoint: CGPoint) -> CAReplicatorLayer {
+//    let rand1 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+//    let rand2 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+//    let rand3 = 1 - CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+    
+    let rand1 = CGFloat(drand48())
+    let rand2 = CGFloat(drand48())
+    let rand3 = 1 - CGFloat(drand48())
+    
+    let x = atPoint.x + ((rand2 - 0.5) * self.bounds.width)
+    let y = atPoint.x + ((rand3 - 0.5) * self.bounds.width)
+    
     let replicator = CAReplicatorLayer()
-    replicator.position = atPoint
+    replicator.position = CGPoint(x: x, y: y)
     
     replicator.instanceCount = 40
     replicator.instanceTransform = CATransform3DMakeRotation(CGFloat(M_PI/20), 0, 0, 1)
     
     for i in 1...10 {
       replicator.addSublayer(
-        animatedDot(withDistance: CGFloat(i*10), delay: 1/Double(i), rate:0.5)
+        animatedDot(withDistance: (rand1 + 0.2)*CGFloat(i*10), delay: 1/Double(i), rate:0.15)
       )
     }
     

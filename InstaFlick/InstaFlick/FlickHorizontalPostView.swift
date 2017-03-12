@@ -14,6 +14,7 @@ import AVFoundation
 class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
   private var flickHorizontalViewModel : FlickHorizontalViewModel? = nil
+  private var animCount : Int = 0
   
   @IBOutlet weak var collectionDogs: UICollectionView!
   @IBOutlet weak var collectionCats: UICollectionView!
@@ -160,7 +161,12 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   
   //  MARK: UIScrollViewDelegate Methods
   
-  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    animCount = 0
+    self.view!.fireworks()
+  }
+  override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    if (animCount > 3) { return }
     self.view!.fireworks()
   }
   
