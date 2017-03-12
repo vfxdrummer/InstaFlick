@@ -14,6 +14,7 @@ import AVFoundation
 class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
   
   private var flickHorizontalViewModel : FlickHorizontalViewModel? = nil
+  private var collections : [UICollectionView] = []
   private var animCount : Int = 0
   
   @IBOutlet weak var collectionDogs: UICollectionView!
@@ -37,13 +38,13 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     // Setup the Nibs
     let FlickImagePostNib = UINib(nibName: "FlickImageCell", bundle: nil)
     
-    let collections = [collectionDogs, collectionCats, collectionMonkeys, collectionElephants, collectionLions, collectionTigers, collectionBears, collectionOhMy]
+    self.collections = [collectionDogs, collectionCats, collectionMonkeys, collectionElephants, collectionLions, collectionTigers, collectionBears, collectionOhMy]
     
     // Setup the Nibs & Delegates
-    _ = collections.map({
-      $0?.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
-      $0?.delegate = self
-      $0?.dataSource = self
+    _ = self.collections.map({
+      $0.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
+      $0.delegate = self
+      $0.dataSource = self
     })
     
     // Setup the Title
@@ -80,10 +81,9 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
    */
   func reload() {
     self.endRefreshing()
-    collectionDogs.reloadData()
-    collectionCats.reloadData()
-    collectionMonkeys.reloadData()
-    collectionElephants.reloadData()
+    _ = self.collections.map({
+      $0.reloadData()
+    })
     tableView.reloadData()
   }
   
@@ -124,14 +124,14 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
       flickPostObj = flickHorizontalViewModel!.monkeyPosts[indexPath.row]
     case 3: // Elephants
       flickPostObj = flickHorizontalViewModel!.elephantPosts[indexPath.row]
-    case 4: // Dogs
-      flickPostObj = flickHorizontalViewModel!.dogPosts[indexPath.row]
-    case 5: // Cats
-      flickPostObj = flickHorizontalViewModel!.catPosts[indexPath.row]
-    case 6: // Monkeys
-      flickPostObj = flickHorizontalViewModel!.monkeyPosts[indexPath.row]
-    case 7: // Elephants
-      flickPostObj = flickHorizontalViewModel!.elephantPosts[indexPath.row]
+    case 4: // Lions
+      flickPostObj = flickHorizontalViewModel!.lionPosts[indexPath.row]
+    case 5: // Tigers
+      flickPostObj = flickHorizontalViewModel!.tigerPosts[indexPath.row]
+    case 6: // Bears
+      flickPostObj = flickHorizontalViewModel!.bearPosts[indexPath.row]
+    case 7: // OhMy
+      flickPostObj = flickHorizontalViewModel!.ohmyPosts[indexPath.row]
     default:
       flickPostObj = FlickPost()
       
@@ -150,14 +150,14 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
       return flickHorizontalViewModel!.monkeyPosts.count
     case 3: // Elephants
       return flickHorizontalViewModel!.elephantPosts.count
-    case 4: // Dogs
-      return flickHorizontalViewModel!.dogPosts.count
-    case 5: // Cats
-      return flickHorizontalViewModel!.catPosts.count
-    case 6: // Monkeys
-      return flickHorizontalViewModel!.monkeyPosts.count
-    case 7: // Elephants
-      return flickHorizontalViewModel!.elephantPosts.count
+    case 4: // Lions
+      return flickHorizontalViewModel!.lionPosts.count
+    case 5: // Tigers
+      return flickHorizontalViewModel!.tigerPosts.count
+    case 6: // Bears
+      return flickHorizontalViewModel!.bearPosts.count
+    case 7: // OhMy
+      return flickHorizontalViewModel!.ohmyPosts.count
     default:
       return 0
     }

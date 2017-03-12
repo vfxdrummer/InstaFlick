@@ -34,6 +34,26 @@ class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
       return CurrentFlickHorizontalItems.sharedInstance.elephantPosts
     }
   }
+  var lionPosts : [FlickPost] {
+    get {
+      return CurrentFlickHorizontalItems.sharedInstance.lionPosts
+    }
+  }
+  var tigerPosts : [FlickPost] {
+    get {
+      return CurrentFlickHorizontalItems.sharedInstance.tigerPosts
+    }
+  }
+  var bearPosts : [FlickPost] {
+    get {
+      return CurrentFlickHorizontalItems.sharedInstance.bearPosts
+    }
+  }
+  var ohmyPosts : [FlickPost] {
+    get {
+      return CurrentFlickHorizontalItems.sharedInstance.ohmyPosts
+    }
+  }
   
   /**
    loadFlickPosts
@@ -46,6 +66,10 @@ class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
     FlickInterface.getFlickPostsByType(type: FlickrPostType.Cats, page:1, photosPerPage:25)
     FlickInterface.getFlickPostsByType(type: FlickrPostType.Monkeys, page:1, photosPerPage:25)
     FlickInterface.getFlickPostsByType(type: FlickrPostType.Elephants, page:1, photosPerPage:25)
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.Lions, page:1, photosPerPage:25)
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.Tigers, page:1, photosPerPage:25)
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.Bears, page:1, photosPerPage:25)
+    FlickInterface.getFlickPostsByType(type: FlickrPostType.OhMy, page:1, photosPerPage:25)
     
   }
   

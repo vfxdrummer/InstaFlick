@@ -29,4 +29,8 @@ enum FlickrPostType : String {
   case Cats = "Cats"
   case Monkeys = "Monkeys"
   case Elephants = "Elephants"
+  case Lions = "Lions"
+  case Tigers = "Tigers"
+  case Bears = "Bears"
+  case OhMy = "Oh"
 }

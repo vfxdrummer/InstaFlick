@@ -106,5 +106,33 @@ class CurrentFlickHorizontalItems : NSObject {
       })
     }
   }
+  var lionPosts : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: lionPosts, type: FlickrPostType.Lions)
+      })
+    }
+  }
+  var tigerPosts : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: tigerPosts, type: FlickrPostType.Tigers)
+      })
+    }
+  }
+  var bearPosts : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: bearPosts, type: FlickrPostType.Bears)
+      })
+    }
+  }
+  var ohmyPosts : [FlickPost] = [] {
+    didSet {
+      _ = delegates.flatMap({
+        $0.update(posts: ohmyPosts, type: FlickrPostType.OhMy)
+      })
+    }
+  }
 }
 

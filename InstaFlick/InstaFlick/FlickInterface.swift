@@ -62,6 +62,34 @@ class FlickInterface: NSObject {
           default :
             CurrentFlickHorizontalItems.sharedInstance.elephantPosts += returnedFlickPosts
           }
+        case FlickrPostType.Lions:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.lionPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.lionPosts += returnedFlickPosts
+          }
+        case FlickrPostType.Tigers:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.tigerPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.tigerPosts += returnedFlickPosts
+          }
+        case FlickrPostType.Bears:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.bearPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.bearPosts += returnedFlickPosts
+          }
+        case FlickrPostType.OhMy:
+          switch (page) {
+          case 1:
+            CurrentFlickHorizontalItems.sharedInstance.ohmyPosts = returnedFlickPosts
+          default :
+            CurrentFlickHorizontalItems.sharedInstance.ohmyPosts += returnedFlickPosts
+          }
         }
       }
     })
