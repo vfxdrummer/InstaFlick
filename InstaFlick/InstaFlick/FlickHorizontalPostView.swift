@@ -63,6 +63,11 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     tableView.contentInset.bottom = 40.0
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    
+    self.view!.fireworks()
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
