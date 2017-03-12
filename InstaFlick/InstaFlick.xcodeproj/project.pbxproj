@@ -23,6 +23,7 @@
 		811DC4F51E7131840018153D /* FlickHorizontalPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811DC4F41E7131840018153D /* FlickHorizontalPostView.swift */; };
 		811DC4F71E71318B0018153D /* FlickHorizontalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811DC4F61E71318B0018153D /* FlickHorizontalViewModel.swift */; };
 		811DC4F91E7139F50018153D /* StartupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811DC4F81E7139F50018153D /* StartupService.swift */; };
+		81278EB71E74C3680054E075 /* ExtUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81278EB61E74C3680054E075 /* ExtUIView.swift */; };
 		81BD8C401E67F630005EE85E /* InstaFlickUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810647141E67EBBE00E3AE2B /* InstaFlickUITests.swift */; };
 		81BD8C411E67F635005EE85E /* InstaFlickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810647101E67EBB500E3AE2B /* InstaFlickTests.swift */; };
 		81BD8C431E67F685005EE85E /* InstaPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD8C421E67F685005EE85E /* InstaPost.swift */; };
@@ -94,6 +95,7 @@
 		811DC4F41E7131840018153D /* FlickHorizontalPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickHorizontalPostView.swift; path = InstaFlick/FlickHorizontalPostView.swift; sourceTree = SOURCE_ROOT; };
 		811DC4F61E71318B0018153D /* FlickHorizontalViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickHorizontalViewModel.swift; path = InstaFlick/FlickHorizontalViewModel.swift; sourceTree = SOURCE_ROOT; };
 		811DC4F81E7139F50018153D /* StartupService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartupService.swift; path = InstaFlick/StartupService.swift; sourceTree = SOURCE_ROOT; };
+		81278EB61E74C3680054E075 /* ExtUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtUIView.swift; path = InstaFlick/ExtUIView.swift; sourceTree = SOURCE_ROOT; };
 		81BD8C421E67F685005EE85E /* InstaPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstaPost.swift; path = InstaFlick/InstaPost.swift; sourceTree = SOURCE_ROOT; };
 		81BD8C441E67F704005EE85E /* IFViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IFViewModel.swift; path = InstaFlick/IFViewModel.swift; sourceTree = SOURCE_ROOT; };
 		81BD8C461E67F72B005EE85E /* InstaInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstaInterface.swift; path = InstaFlick/InstaInterface.swift; sourceTree = SOURCE_ROOT; };
@@ -308,6 +310,7 @@
 		22FA69441E133D0B003CAFEF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				81278EB61E74C3680054E075 /* ExtUIView.swift */,
 				81BD8C481E67FA0B005EE85E /* ExtUIImageView.swift */,
 			);
 			name = Extensions;
@@ -601,6 +604,7 @@
 				8106471B1E67ED0400E3AE2B /* InstaPostView.swift in Sources */,
 				811DC4F51E7131840018153D /* FlickHorizontalPostView.swift in Sources */,
 				81BD8C451E67F704005EE85E /* IFViewModel.swift in Sources */,
+				81278EB71E74C3680054E075 /* ExtUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

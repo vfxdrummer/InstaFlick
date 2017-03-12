@@ -15,7 +15,9 @@ extension UIView {
   // Animation
   //
   
-  func addAnimationWithDelay(shapeLayer:CAShapeLayer, pathAnimation:CABasicAnimation, keyPath:String, fromValue:Double, toValue:Double, duration:Double, delay:Double) {
+  func addAnimationWithDelay(shapeLayer:CAShapeLayer, keyPath:String, fromValue:Double, toValue:Double, duration:Double, delay:Double, timingFunction:String) {
+    let pathAnimation: CABasicAnimation = CABasicAnimation(keyPath: keyPath)
+    pathAnimation.timingFunction = CAMediaTimingFunction(name: timingFunction)
     DispatchQueue.main.asyncAfter(deadline: (.now() + delay)) {
       pathAnimation.duration = CFTimeInterval(duration)
       pathAnimation.fromValue = NSNumber(value: fromValue)
@@ -23,6 +25,18 @@ extension UIView {
       shapeLayer.add(pathAnimation, forKey: keyPath)
     }
   }
+  
+//  func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+//    let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+//    rotateAnimation.fromValue = 0.0
+//    rotateAnimation.toValue = CGFloat(M_PI * 2.0)
+//    rotateAnimation.duration = duration
+//    
+//    if let delegate: AnyObject = completionDelegate {
+//      rotateAnimation.delegate = delegate
+//    }
+//    self.layer.addAnimation(rotateAnimation, forKey: nil)
+//  }
   
   func animatedLineFrom(from: CGPoint, to: CGPoint) -> CAShapeLayer {
     let linePath = UIBezierPath()
@@ -35,10 +49,9 @@ extension UIView {
     line.strokeColor = UIColor.cyan.cgColor
     
     
-    let pathAnimation_strokeEnd: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-    self.addAnimationWithDelay(shapeLayer: line, pathAnimation:pathAnimation_strokeEnd, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 1.0, delay: 0.0)
-    let pathAnimation2_strokeStart: CABasicAnimation = CABasicAnimation(keyPath: "strokeStart")
-    self.addAnimationWithDelay(shapeLayer: line, pathAnimation:pathAnimation2_strokeStart, keyPath: "strokeStart", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.9)
+    self.addAnimationWithDelay(shapeLayer: line, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 1.0, delay: 0.0, timingFunction:kCAMediaTimingFunctionEaseOut)
+    
+    self.addAnimationWithDelay(shapeLayer: line, keyPath: "strokeStart", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.9, timingFunction:kCAMediaTimingFunctionEaseOut)
     
     line.strokeStart = 1.0
     
@@ -63,8 +76,9 @@ extension UIView {
     replicator.instanceTransform = CATransform3DMakeRotation(CGFloat(M_PI/10), 0, 0, 1)
     
     f11line.strokeEnd = 0
-    let pathAnimation_strokeEnd: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-    self.addAnimationWithDelay(shapeLayer: f11line, pathAnimation:pathAnimation_strokeEnd, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.33)
+    self.addAnimationWithDelay(shapeLayer: f11line, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.33, timingFunction:kCAMediaTimingFunctionEaseOut)
+    
+    self.addAnimationWithDelay(shapeLayer: f11line, keyPath: "strokeStart", fromValue: 0.0, toValue: 1.0, duration: 1.0, delay: 1.0, timingFunction:kCAMediaTimingFunctionEaseOut)
     
     //line path 2
     let f12linePath = UIBezierPath()
@@ -79,8 +93,14 @@ extension UIView {
     replicator.addSublayer(f12line)
     
     f12line.strokeEnd = 0
-    let pathAnimation_strokeEnd2: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-    self.addAnimationWithDelay(shapeLayer: f12line, pathAnimation:pathAnimation_strokeEnd2, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.33)
+    self.addAnimationWithDelay(shapeLayer: f12line, keyPath: "strokeEnd", fromValue: 0.0, toValue: 1.0, duration: 0.75, delay: 0.33, timingFunction:kCAMediaTimingFunctionEaseIn)
+    
+    self.addAnimationWithDelay(shapeLayer: f12line, keyPath: "strokeStart", fromValue: 0.0, toValue: 0.5, duration: 1.0, delay: 1.0, timingFunction:kCAMediaTimingFunctionEaseIn)
+    
+    UIView.animate(withDuration: 1.0, delay: 1.0, options: [.curveEaseIn], animations: {
+      f11line.transform = CATransform3DMakeRotation(CGFloat(M_PI_4), 0, 0, 1)
+      f12line.transform = CATransform3DMakeRotation(CGFloat(M_PI_4/2), 0, 0, 1)
+    })
     
     return replicator
   }

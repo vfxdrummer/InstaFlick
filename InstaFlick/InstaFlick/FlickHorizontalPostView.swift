@@ -63,11 +63,6 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     tableView.contentInset.bottom = 40.0
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    
-    self.view!.fireworks()
-  }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
@@ -161,6 +156,12 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   }
   
   func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+  }
+  
+  //  MARK: UIScrollViewDelegate Methods
+  
+  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    self.view!.fireworks()
   }
   
 }
