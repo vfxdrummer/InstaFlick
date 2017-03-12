@@ -20,6 +20,10 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   @IBOutlet weak var collectionCats: UICollectionView!
   @IBOutlet weak var collectionMonkeys: UICollectionView!
   @IBOutlet weak var collectionElephants: UICollectionView!
+  @IBOutlet weak var collectionLions: UICollectionView!
+  @IBOutlet weak var collectionTigers: UICollectionView!
+  @IBOutlet weak var collectionBears: UICollectionView!
+  @IBOutlet weak var collectionOhMy: UICollectionView!
   
   //  MARK: UIView Lifecycle Methods
   
@@ -33,21 +37,14 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     // Setup the Nibs
     let FlickImagePostNib = UINib(nibName: "FlickImageCell", bundle: nil)
     
-    // Setup the Tables
-    collectionDogs.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
-    collectionCats.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
-    collectionMonkeys.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
-    collectionElephants.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
+    let collections = [collectionDogs, collectionCats, collectionMonkeys, collectionElephants, collectionLions, collectionTigers, collectionBears, collectionOhMy]
     
-    // Setup the Delegates
-    collectionDogs.delegate = self
-    collectionDogs.dataSource = self
-    collectionCats.delegate = self
-    collectionCats.dataSource = self
-    collectionMonkeys.delegate = self
-    collectionMonkeys.dataSource = self
-    collectionElephants.delegate = self
-    collectionElephants.dataSource = self
+    // Setup the Nibs & Delegates
+    _ = collections.map({
+      $0?.register(FlickImagePostNib, forCellWithReuseIdentifier: "FlickImageCell")
+      $0?.delegate = self
+      $0?.dataSource = self
+    })
     
     // Setup the Title
     self.restorationIdentifier = "FlickHorizontalPost"
@@ -93,7 +90,7 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   //  MARK: UITableViewDelegate & UITableViewDataSource Methods
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return 8
   }
   
   override func tableView(_ tableView: UITableView,
@@ -127,6 +124,14 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
       flickPostObj = flickHorizontalViewModel!.monkeyPosts[indexPath.row]
     case 3: // Elephants
       flickPostObj = flickHorizontalViewModel!.elephantPosts[indexPath.row]
+    case 4: // Dogs
+      flickPostObj = flickHorizontalViewModel!.dogPosts[indexPath.row]
+    case 5: // Cats
+      flickPostObj = flickHorizontalViewModel!.catPosts[indexPath.row]
+    case 6: // Monkeys
+      flickPostObj = flickHorizontalViewModel!.monkeyPosts[indexPath.row]
+    case 7: // Elephants
+      flickPostObj = flickHorizontalViewModel!.elephantPosts[indexPath.row]
     default:
       flickPostObj = FlickPost()
       
@@ -144,6 +149,14 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     case 2: // Monkeys
       return flickHorizontalViewModel!.monkeyPosts.count
     case 3: // Elephants
+      return flickHorizontalViewModel!.elephantPosts.count
+    case 4: // Dogs
+      return flickHorizontalViewModel!.dogPosts.count
+    case 5: // Cats
+      return flickHorizontalViewModel!.catPosts.count
+    case 6: // Monkeys
+      return flickHorizontalViewModel!.monkeyPosts.count
+    case 7: // Elephants
       return flickHorizontalViewModel!.elephantPosts.count
     default:
       return 0
