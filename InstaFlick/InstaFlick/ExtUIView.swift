@@ -147,22 +147,17 @@ extension UIView {
   }
   
   func firework2(at atPoint: CGPoint) -> CAReplicatorLayer {
-    let rand1 = CGFloat(drand48())
-    let rand2 = CGFloat(drand48())
-    let rand3 = 1 - CGFloat(drand48())
-    
-    let x = atPoint.x + ((rand2 - 0.5) * self.bounds.width)
-    let y = atPoint.x + ((rand3 - 0.5) * self.bounds.height)
+    let rand = CGFloat(drand48())
     
     let replicator = CAReplicatorLayer()
-    replicator.position = CGPoint(x: x, y: y)
+    replicator.position = CGPoint(x: atPoint.x, y: 27.0)
     
     replicator.instanceCount = 40
     replicator.instanceTransform = CATransform3DMakeRotation(CGFloat(M_PI/20), 0, 0, 1)
     
     for i in 1...10 {
       replicator.addSublayer(
-        animatedDot(withDistance: (rand1 + 0.2)*CGFloat(i*10), delay: 1/Double(i), rate:0.15)
+        animatedDot(withDistance: (rand + 0.2)*CGFloat(i*10), delay: 1/Double(i), rate:0.15)
       )
     }
     

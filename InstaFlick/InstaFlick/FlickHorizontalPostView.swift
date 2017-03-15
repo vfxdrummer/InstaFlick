@@ -67,6 +67,7 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   }
   
   func refresh(refreshControl: UIRefreshControl) {
+    self.refreshControl!.fireworks()
     flickHorizontalViewModel?.refreshFlickPosts()
   }
   
@@ -170,19 +171,6 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
   }
   
   func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-  }
-  
-  //  MARK: UIScrollViewDelegate Methods
-  
-  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    animCount = 0
-    self.view!.fireworks()
-  }
-  
-  override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    if (animCount > 1) { return }
-    self.view!.fireworks()
-    animCount += 1
   }
   
 }
