@@ -10,9 +10,6 @@
 		05FA06BADAF82B1DF9F84287 /* Pods_InstaFlickTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2BF8FBFF1D50A4672DDDAA /* Pods_InstaFlickTests.framework */; };
 		55E50D1CED783C98FAD2CDB9 /* Pods_CorpsPicksTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2628E076101F686E2A7E88 /* Pods_CorpsPicksTests.framework */; };
 		8106470D1E67EAF600E3AE2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8106470C1E67EAF600E3AE2B /* AppDelegate.swift */; };
-		8106470F1E67EB1E00E3AE2B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8106470E1E67EB1E00E3AE2B /* Info.plist */; };
-		810647131E67EBB500E3AE2B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 810647111E67EBB500E3AE2B /* Info.plist */; };
-		810647171E67EBBE00E3AE2B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 810647151E67EBBE00E3AE2B /* Info.plist */; };
 		810647191E67ECFA00E3AE2B /* InstaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810647181E67ECFA00E3AE2B /* InstaViewModel.swift */; };
 		8106471B1E67ED0400E3AE2B /* InstaPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8106471A1E67ED0400E3AE2B /* InstaPostView.swift */; };
 		8106471E1E67ED1300E3AE2B /* InstaImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8106471C1E67ED1300E3AE2B /* InstaImageCell.swift */; };
@@ -407,7 +404,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Tim Brandt";
 				TargetAttributes = {
 					22A0F4951E0D0BA400DD2F2D = {
@@ -451,11 +448,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				810647131E67EBB500E3AE2B /* Info.plist in Resources */,
 				81BD8C591E68FDD0005EE85E /* uparrow@2x.png in Resources */,
 				81BD8C571E68FDD0005EE85E /* comment@2x.png in Resources */,
-				810647171E67EBBE00E3AE2B /* Info.plist in Resources */,
-				8106470F1E67EB1E00E3AE2B /* Info.plist in Resources */,
 				81BD8C6E1E6D2353005EE85E /* library_favoritesHeader_inactive@2x.png in Resources */,
 				810647251E67EDC200E3AE2B /* Main.storyboard in Resources */,
 				81BD8C721E6D4A57005EE85E /* player_button_play_active@2x.png in Resources */,
@@ -673,8 +667,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -719,8 +715,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -739,6 +737,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

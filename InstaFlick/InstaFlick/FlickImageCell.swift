@@ -37,12 +37,10 @@ class FlickImageCell: UICollectionViewCell {
     // set values
     postTitle.text = flickPost.title
     postTitle2.text = flickPost.title
-    if let image = (flickPost.image) as? String {
-      postImage.fadeIn(image)
-      postImage.borderize()
-      if (roundify) {
-        postImage.roundify()
-      }
+    postImage.fadeIn(flickPost.image)
+    postImage.borderize()
+    if (roundify) {
+      postImage.roundify()
     }
   }
 }

@@ -33,8 +33,8 @@ class InstaImageCell: UICollectionViewCell {
     postTitle2.text = instaPost.title
     likes.text = String(instaPost.likes)
     commentCount.text = String(instaPost.comments)
-    if let image = (instaPost.image_standard_resolution?.url)! as? String {
-      postImage.fadeIn(image)
+    if let image_standard_resolution = instaPost.image_standard_resolution {
+      postImage.fadeIn(image_standard_resolution.url)
     }
     playImage.isHidden = (instaPost.insta_post_type == "video") ? false : true
     
