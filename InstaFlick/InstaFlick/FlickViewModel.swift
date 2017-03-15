@@ -71,6 +71,7 @@ class FlickViewModel: IFViewModel, DataStateProtocol {
    */
   func changeSearchTerm(searchTerm: String) {
     loading = false
+    DataStateItems.sharedInstance.flickPage = 1
     DataStateItems.sharedInstance.flickSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
     loadFlickPosts()
   }
