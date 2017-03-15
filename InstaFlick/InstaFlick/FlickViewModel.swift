@@ -8,31 +8,31 @@
 
 import UIKit
 
-class FlickViewModel: IFViewModel, CurrentFlickProtocol {
+class FlickViewModel: IFViewModel, DataStateProtocol {
   
   func setup() {
-    CurrentFlickItems.sharedInstance.delegate = self
+    DataStateItems.sharedInstance.delegate = self
   }
   var loading : Bool = false
   var searchTerm : String {
     get {
-      return CurrentFlickItems.sharedInstance.searchTerm
+      return DataStateItems.sharedInstance.flickSearchTerm
     }
   }
   var page : Int  {
     get {
-      return CurrentFlickItems.sharedInstance.page
+      return DataStateItems.sharedInstance.flickPage
     }
   }
   var postsPerPage : Int  {
     get {
-      return CurrentFlickItems.sharedInstance.postsPerPage
+      return DataStateItems.sharedInstance.flickPostsPerPage
     }
   }
   
   var posts : [FlickPost] {
     get {
-      return CurrentFlickItems.sharedInstance.flickPosts
+      return DataStateItems.sharedInstance.flickPosts
     }
   }
   
@@ -51,7 +51,7 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
    */
   func refreshFlickPosts() {
     loading = false
-    CurrentFlickItems.sharedInstance.page = 1
+    DataStateItems.sharedInstance.flickPage = 1
     self.loadFlickPosts()
   }
   
@@ -61,7 +61,7 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
    */
   func loadNextPage() {
     if loading == true { return }
-    CurrentFlickItems.sharedInstance.page = page + 1
+    DataStateItems.sharedInstance.flickPage = self.page + 1
     self.loadFlickPosts()
   }
   
@@ -71,7 +71,7 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
    */
   func changeSearchTerm(searchTerm: String) {
     loading = false
-    CurrentFlickItems.sharedInstance.searchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
+    DataStateItems.sharedInstance.flickSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
     loadFlickPosts()
   }
   
@@ -79,26 +79,18 @@ class FlickViewModel: IFViewModel, CurrentFlickProtocol {
   
   /**
    update
-   Fired by the CurrentFlickItems when an update occurs for the posts
+   Fired by the DataStateItems when an update occurs for the posts
    - parameter posts: [FlickPost]
    */
-  func update(posts:[FlickPost]) {
+  func updateFlick(posts:[FlickPost]) {
     loading = false
     if let view = self.vc as? FlickPostView {
-      if (page > 1) {
+      if (self.page > 1) {
         view.reloadCollection()
       } else {
         view.reload()
       }
     }
-  }
-  
-  /**
-   updatedSearchTerm
-   Fired by the CurrentFlickItems when an update occurs for the searchTerm
-   - parameter searchTerm: String
-   */
-  func updatedSearchTerm(searchTerm: String) {
   }
   
 }

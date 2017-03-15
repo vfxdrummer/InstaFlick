@@ -18,7 +18,7 @@ class InstaInterface: NSObject {
   class func getInstaPosts() {
     APIService.getInstaPosts(handler: { response in
       if (response["data"] != nil) {
-        CurrentInstaItems.sharedInstance.instaPosts = parseList(list: response["data"] as! [Any])
+        DataStateItems.sharedInstance.instaPosts = parseList(list: response["data"] as! [Any])
       }
     })
   } 

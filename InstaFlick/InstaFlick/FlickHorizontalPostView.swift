@@ -178,9 +178,11 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     animCount = 0
     self.view!.fireworks()
   }
+  
   override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    if (animCount > 3) { return }
+    if (animCount > 1) { return }
     self.view!.fireworks()
+    animCount += 1
   }
   
 }

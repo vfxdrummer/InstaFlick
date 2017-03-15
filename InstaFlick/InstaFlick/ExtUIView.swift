@@ -147,16 +147,12 @@ extension UIView {
   }
   
   func firework2(at atPoint: CGPoint) -> CAReplicatorLayer {
-//    let rand1 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-//    let rand2 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-//    let rand3 = 1 - CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-    
     let rand1 = CGFloat(drand48())
     let rand2 = CGFloat(drand48())
     let rand3 = 1 - CGFloat(drand48())
     
     let x = atPoint.x + ((rand2 - 0.5) * self.bounds.width)
-    let y = atPoint.x + ((rand3 - 0.5) * self.bounds.width)
+    let y = atPoint.x + ((rand3 - 0.5) * self.bounds.height)
     
     let replicator = CAReplicatorLayer()
     replicator.position = CGPoint(x: x, y: y)

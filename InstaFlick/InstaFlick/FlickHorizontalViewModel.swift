@@ -8,50 +8,51 @@
 
 import UIKit
 
-class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
+class FlickHorizontalViewModel: IFViewModel, DataStateProtocol {
   
   func setup() {
-    CurrentFlickHorizontalItems.sharedInstance.delegate = self
+    DataStateItems.sharedInstance.delegate = self
   }
   var loading : Bool = false
+  var postsPerPage : Int = DataStateItems.sharedInstance.flickPostsPerPage
   var dogPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.dogPosts
+      return DataStateItems.sharedInstance.dogPosts
     }
   }
   var catPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.catPosts
+      return DataStateItems.sharedInstance.catPosts
     }
   }
   var monkeyPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.monkeyPosts
+      return DataStateItems.sharedInstance.monkeyPosts
     }
   }
   var elephantPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.elephantPosts
+      return DataStateItems.sharedInstance.elephantPosts
     }
   }
   var lionPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.lionPosts
+      return DataStateItems.sharedInstance.lionPosts
     }
   }
   var tigerPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.tigerPosts
+      return DataStateItems.sharedInstance.tigerPosts
     }
   }
   var bearPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.bearPosts
+      return DataStateItems.sharedInstance.bearPosts
     }
   }
   var ohmyPosts : [FlickPost] {
     get {
-      return CurrentFlickHorizontalItems.sharedInstance.ohmyPosts
+      return DataStateItems.sharedInstance.ohmyPosts
     }
   }
   
@@ -62,15 +63,9 @@ class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
   func loadFlickPosts() {
     if loading == true { return }
     loading = true
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.Dogs, page:1, photosPerPage:25)
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.Cats, page:1, photosPerPage:25)
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.Monkeys, page:1, photosPerPage:25)
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.Elephants, page:1, photosPerPage:25)
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.Lions, page:1, photosPerPage:25)
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.Tigers, page:1, photosPerPage:25)
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.Bears, page:1, photosPerPage:25)
-    FlickInterface.getFlickPostsByType(type: FlickrPostType.OhMy, page:1, photosPerPage:25)
-    
+    for postType in iterateEnum(FlickrPostType.self) {
+      FlickInterface.getFlickPostsByType(type: postType, page:1, photosPerPage:postsPerPage)
+    }
   }
   
   /**
@@ -85,11 +80,11 @@ class FlickHorizontalViewModel: IFViewModel, CurrentFlickHorizontalProtocol {
   
   /**
    update
-   Fired by the CurrentFlickHorizontalItems when an update occurs for the posts
+   Fired by the DataStateItems when an update occurs for the posts
    - parameter posts: [FlickPost]
    - parameter type: FlickrPostType
    */
-  func update(posts:[FlickPost], type:FlickrPostType){
+  func updateFlickHorizontal(posts:[FlickPost], type:FlickrPostType.RawValue) {
     if let view = self.vc as? FlickHorizontalPostView {
       view.reload()
     }

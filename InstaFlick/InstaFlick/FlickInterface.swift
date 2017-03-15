@@ -21,9 +21,9 @@ class FlickInterface: NSObject {
         let returnedFlickPosts:[FlickPost] = parseList(list:photoList)
         switch (page) {
         case 1:
-          CurrentFlickItems.sharedInstance.flickPosts = returnedFlickPosts
+          DataStateItems.sharedInstance.flickPosts = returnedFlickPosts
         default :
-          CurrentFlickItems.sharedInstance.flickPosts += returnedFlickPosts
+          DataStateItems.sharedInstance.flickPosts += returnedFlickPosts
         }
       }
     })
@@ -37,58 +37,58 @@ class FlickInterface: NSObject {
         case FlickrPostType.Dogs:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.dogPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.dogPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.dogPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.dogPosts += returnedFlickPosts
           }
         case FlickrPostType.Cats:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.catPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.catPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.catPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.catPosts += returnedFlickPosts
           }
         case FlickrPostType.Monkeys:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.monkeyPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.monkeyPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.monkeyPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.monkeyPosts += returnedFlickPosts
           }
         case FlickrPostType.Elephants:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.elephantPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.elephantPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.elephantPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.elephantPosts += returnedFlickPosts
           }
         case FlickrPostType.Lions:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.lionPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.lionPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.lionPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.lionPosts += returnedFlickPosts
           }
         case FlickrPostType.Tigers:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.tigerPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.tigerPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.tigerPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.tigerPosts += returnedFlickPosts
           }
         case FlickrPostType.Bears:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.bearPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.bearPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.bearPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.bearPosts += returnedFlickPosts
           }
         case FlickrPostType.OhMy:
           switch (page) {
           case 1:
-            CurrentFlickHorizontalItems.sharedInstance.ohmyPosts = returnedFlickPosts
+            DataStateItems.sharedInstance.ohmyPosts = returnedFlickPosts
           default :
-            CurrentFlickHorizontalItems.sharedInstance.ohmyPosts += returnedFlickPosts
+            DataStateItems.sharedInstance.ohmyPosts += returnedFlickPosts
           }
         }
       }

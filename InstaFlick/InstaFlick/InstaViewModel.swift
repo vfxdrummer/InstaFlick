@@ -1,5 +1,5 @@
 //
-//  instaViewModel.swift
+//  InstaViewModel.swift
 //  InstaFlick
 //
 //  Created by Timothy Brandt on 3/1/17.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class InstaViewModel: IFViewModel, CurrentInstaProtocol {
+class InstaViewModel: IFViewModel, DataStateProtocol {
   
   func setup() {
-    CurrentInstaItems.sharedInstance.delegate = self
+    DataStateItems.sharedInstance.delegate = self
   }
   
   var posts : [InstaPost] {
     get {
-      return CurrentInstaItems.sharedInstance.instaPosts
+      return DataStateItems.sharedInstance.instaPosts
     }
   }
   
@@ -32,10 +32,10 @@ class InstaViewModel: IFViewModel, CurrentInstaProtocol {
   
   /**
    update
-   Fired by the CurrentInstaItems when an update occurs for the posts
+   Fired by the DataStateItems when an update occurs for the posts
    - parameter posts: [InstaPost]
    */
-  func update(posts:[InstaPost]) {
+  func updateInsta(posts:[InstaPost]) {
     if let view = self.vc as? InstaPostView {
       view.reload()
     }

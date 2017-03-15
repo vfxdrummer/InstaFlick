@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
+            filePath = "InstaFlick/InstaFlick/AnimationUtility.swift"
+            timestampString = "510968580.588303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "animatedLineFrom(from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
+            filePath = "InstaFlick/InstaFlick/AnimationUtility.swift"
+            timestampString = "510968581.406449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "animatedLineFrom(from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
+            filePath = "InstaFlick/InstaFlick/AnimationUtility.swift"
+            timestampString = "510968646.731459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "animatedLineFrom(from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,77 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
+            filePath = "InstaFlick/InstaFlick/AnimationUtility.swift"
+            timestampString = "510968647.588051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InstaFlick/InstaFlick/FlickInterface.swift"
-            timestampString = "510884551.819747"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "getFlickPostsByType(type:page:photosPerPage:)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "animatedLineFrom(from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
