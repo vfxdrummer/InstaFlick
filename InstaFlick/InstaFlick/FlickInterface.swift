@@ -18,7 +18,7 @@ class FlickInterface: NSObject {
   class func getFlickPosts(search:String, page:Int, photosPerPage:Int) {
     APIService.getFlickPosts(search:search, page:page, photosPerPage:photosPerPage, handler: { response in
       if let photoList = (response["photos"] as! [String:Any])["photo"] as? [Any] {
-        let returnedFlickPosts:[FlickPost] = parseList(list:photoList)
+        let returnedFlickPosts:[FlickPost] = FlickPost.parseList(list:photoList)
         switch (page) {
         case 1:
           DataStateItems.sharedInstance.flickPosts = returnedFlickPosts
@@ -32,7 +32,7 @@ class FlickInterface: NSObject {
   class func getFlickPostsByType(type:FlickrPostType, page:Int, photosPerPage:Int) {
     APIService.getFlickPosts(search:type.rawValue, page:1, photosPerPage:photosPerPage, handler: { response in
       if let photoList = (response["photos"] as! [String:Any])["photo"] as? [Any] {
-        let returnedFlickPosts:[FlickPost] = parseList(list:photoList)
+        let returnedFlickPosts:[FlickPost] = FlickPost.parseList(list:photoList)
         switch(type) {
         case FlickrPostType.Dogs:
           switch (page) {
@@ -93,53 +93,5 @@ class FlickInterface: NSObject {
         }
       }
     })
-  }
-
-
-  /**
-   parse
-   Takes a JSON object and pulls out the necessary values.\
-   */
-  class func parse(json:[String: Any]) -> FlickPost {
-    let post : FlickPost = FlickPost()
-    
-    if let id = json["id"] as? String {
-      post.id = id
-    }
-    
-    if let title = json["title"] as? String {
-      post.title = title
-    }
-    
-    if let farm = json["farm"] as? Int {
-      post.farm = farm
-    }
-    
-    if let server = json["server"] as? String {
-      post.server = server
-    }
-    
-    if let secret = json["secret"] as? String {
-      post.secret = secret
-    }
-    
-    return post
-  }
-  
-  /**
-   parseList
-   Takes a JSON Array and parses channel objects, returns a parsed array of Channels
-   - parameter json:   JSON [Array]
-   - parameter usePNG: Bool
-   - returns: [Channel]
-   */
-  class func parseList(list:Array<Any>) -> [FlickPost] {
-    return list.map( {
-      if let json = $0 as? [String: Any] {
-        return parse(json: json)
-      } else {
-        return FlickPost()
-      }
-    }).filter( { $0.id != "" } )
   }
 }
