@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class InstaPostView: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
   private var instaViewModel : InstaViewModel? = nil
   private var instaRefreshControl : UIRefreshControl? = nil
@@ -43,12 +43,6 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     
     // Refresh Control
     instaRefreshControl = UIRefreshControl()
-    if #available(iOS 10.0, *) {
-      collectionInsta.refreshControl = instaRefreshControl!
-    } else {
-      collectionInsta.addSubview(instaRefreshControl!)
-    }
-    self.refreshControl!.addTarget(self, action: #selector(InstaPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
     self.instaRefreshControl!.addTarget(self, action: #selector(InstaPostView.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
     
     instaViewModel?.loadInstaPosts()
@@ -68,13 +62,10 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
   }
   
   func endRefreshing() {
-    _ = [self.refreshControl!, self.instaRefreshControl!].map( {
-      if $0.isRefreshing
-      {
-        collectionInsta.setContentOffset(CGPoint(x: 0,y :0), animated: true)
-        $0.endRefreshing()
-      }
-    })
+    if (instaRefreshControl?.isRefreshing)! {
+      collectionInsta.setContentOffset(CGPoint(x: 0,y :0), animated: true)
+      instaRefreshControl?.endRefreshing()
+    }
   }
   
   /**
@@ -82,29 +73,14 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
    */
   func reload() {
     self.endRefreshing()
-    tableView.reloadData()
     collectionInsta.reloadData()
   }
   
-  //  MARK: UITableViewDelegate & UITableViewDataSource Methods
   
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
-  }
-  
-  override func tableView(_ tableView: UITableView,
-                          heightForHeaderInSection section: Int) -> CGFloat {
-    return CGFloat(0.5)
-  }
-  
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UIScreen.main.bounds.height
-  }
-
   
   //  MARK: UICollectionViewDelegate & UICollectionViewDataSource Methods
   
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let InstaPostObj = instaViewModel!.posts[indexPath.row]
     guard InstaPostObj.insta_post_type == "video" else { return }
     
@@ -119,7 +95,7 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     }
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let InstaPostObj = instaViewModel!.posts[indexPath.row]
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstaImageCell", for: indexPath as IndexPath) as! InstaImageCell
     cell.load(instaPost: InstaPostObj)
@@ -127,7 +103,7 @@ class InstaPostView: UITableViewController, UICollectionViewDelegate, UICollecti
     return cell
   }
   
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return instaViewModel!.posts.count
   }
   

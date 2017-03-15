@@ -125,9 +125,9 @@
                         <color key="backgroundColor" red="0.074542584189637329" green="0.074542584189637329" blue="0.074542584189637329" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="pie-Oh-Yuk" kind="relationship" relationship="viewControllers" id="jj1-6d-k1t"/>
-                        <segue destination="7bK-jq-Zjz" kind="relationship" relationship="viewControllers" id="J9o-X5-NwW"/>
-                        <segue destination="fKq-ou-Dca" kind="relationship" relationship="viewControllers" id="kC8-Qb-0O2"/>
+                        <segue destination="VCu-jR-tla" kind="relationship" relationship="viewControllers" id="JpL-0Q-sIn"/>
+                        <segue destination="7bK-jq-Zjz" kind="relationship" relationship="viewControllers" id="Eh2-or-7nZ"/>
+                        <segue destination="fKq-ou-Dca" kind="relationship" relationship="viewControllers" id="HAY-M1-noy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ln2-HQ-oZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,63 +135,33 @@
             <point key="canvasLocation" x="351" y="-829"/>
         </scene>
         <!--Insta View-->
-        <scene sceneID="Tpg-aw-TNd">
+        <scene sceneID="JhQ-Tp-854">
             <objects>
-                <tableViewController storyboardIdentifier="Event" title="Master" clearsSelectionOnViewWillAppear="NO" id="pie-Oh-Yuk" userLabel="Insta View" customClass="InstaPostView" customModule="InstaFlick" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="xbO-8h-mij" userLabel="Insta Table">
+                <collectionViewController id="VCu-jR-tla" userLabel="Insta View" customClass="InstaPostView" customModule="InstaFlick" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="AzH-IK-jF4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="KEk-ru-9fz">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fPh-GJ-Q4w">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fPh-GJ-Q4w" id="5Z6-dK-pZD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PV4-9i-SOj" userLabel="Collection Insta">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hX1-NJ-khK">
-                                                        <size key="itemSize" width="375" height="200"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells/>
-                                                </collectionView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="PV4-9i-SOj" secondAttribute="bottom" constant="-8" id="Bhj-hr-M6N"/>
-                                                <constraint firstItem="PV4-9i-SOj" firstAttribute="top" secondItem="5Z6-dK-pZD" secondAttribute="topMargin" constant="-8" id="e78-da-lQw"/>
-                                                <constraint firstItem="PV4-9i-SOj" firstAttribute="leading" secondItem="5Z6-dK-pZD" secondAttribute="leadingMargin" constant="-8" id="vAg-xu-AQx"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="PV4-9i-SOj" secondAttribute="trailing" constant="-8" id="yjg-Bt-i9K"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IKW-Pc-FB6">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
                         <connections>
-                            <outlet property="dataSource" destination="pie-Oh-Yuk" id="Wpj-dx-nfl"/>
-                            <outlet property="delegate" destination="pie-Oh-Yuk" id="X49-iZ-H8Y"/>
+                            <outlet property="dataSource" destination="VCu-jR-tla" id="I83-4P-M5r"/>
+                            <outlet property="delegate" destination="VCu-jR-tla" id="Avd-F7-eYL"/>
                         </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Insta" image="genre.png" selectedImage="genre.png" id="cqX-rT-dKU" userLabel="Insta"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="5kx-wg-QX6">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </refreshControl>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Insta" image="genre.png" selectedImage="genre.png" id="GEG-Qc-fSz" userLabel="Insta"/>
                     <connections>
-                        <outlet property="collectionInsta" destination="PV4-9i-SOj" id="06X-fq-gL3"/>
+                        <outlet property="collectionInsta" destination="AzH-IK-jF4" id="w7J-ou-MDw"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cY2-bU-P1Q" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DDX-2M-83y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="350" y="-70"/>
+            <point key="canvasLocation" x="350" y="-72"/>
         </scene>
         <!--Flick2-->
         <scene sceneID="HIY-u7-IC6">
