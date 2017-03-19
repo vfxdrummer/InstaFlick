@@ -62,6 +62,12 @@ class FlickHorizontalPostView: UITableViewController, UITextFieldDelegate, UICol
     tableView.contentInset.bottom = 40.0
   }
   
+  override func viewWillTransition(to size: CGSize,
+                                   with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    self.reload()
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

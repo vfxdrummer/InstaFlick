@@ -53,6 +53,12 @@ class InstaPostView: UICollectionViewController, UICollectionViewDelegateFlowLay
     self.tabBarController?.title = Constants.instaTitle
   }
   
+  override func viewWillTransition(to size: CGSize,
+                                   with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    self.reload()
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

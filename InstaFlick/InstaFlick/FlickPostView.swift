@@ -60,6 +60,12 @@ class FlickPostView: UITableViewController, UITextFieldDelegate, UICollectionVie
     self.tabBarController?.title = Constants.flickTitle
   }
   
+  override func viewWillTransition(to size: CGSize,
+                                   with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    self.reload()
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
